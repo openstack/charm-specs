@@ -136,7 +136,7 @@ Dependencies
 - No additional dependencies for this spec.
 
 References
-==========
+----------
 
 - https://bugs.launchpad.net/neutron/+bug/1491668
 - http://docs.openstack.org/mitaka/networking-guide/scenario-classic-ovs.html
