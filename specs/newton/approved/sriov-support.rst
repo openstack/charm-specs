@@ -1,5 +1,4 @@
-::
-
+..
   Copyright 2016, Canonical UK
 
   This work is licensed under a Creative Commons Attribution 3.0
@@ -126,7 +125,8 @@ No new git repositories required.
 Documentation
 -------------
 
-Updates to the README's in the impacted charms will be made as part of this change.
+Updates to the README's in the impacted charms will be made as part of this
+change.
 
 Security
 --------
@@ -136,14 +136,15 @@ No additional security concerns.
 Testing
 -------
 
-Code changes will be covered by unit tests; functional testing will be done using
-a Mojo specification.
+Code changes will be covered by unit tests; functional testing will be done
+using a Mojo specification.
 
 Dependencies
 ============
 
 - OpenStack Mitaka.
 
-- SR-IOV enabled hardware in the Ubuntu OpenStack QA lab for functional testing
+- SR-IOV enabled hardware in the Ubuntu OpenStack QA lab for functional
+  testing
 
 - Juju device management support
