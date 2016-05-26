@@ -88,8 +88,8 @@ Assignee(s)
 -----------
 
 Primary assignee:
-  james-page
-  lathiat (Trent Lloyd)
+- james-page
+- lathiat (Trent Lloyd)
 
 Gerrit Topic
 ------------
