@@ -88,8 +88,10 @@ Assignee(s)
 -----------
 
 Primary assignee:
-- james-page
-- lathiat (Trent Lloyd)
+  james-page
+
+Additional contributors:
+  lathiat (Trent Lloyd)
 
 Gerrit Topic
 ------------
