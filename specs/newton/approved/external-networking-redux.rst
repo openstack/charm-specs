@@ -1,6 +1,6 @@
 ..
   Copyright 2016 Canonical
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -18,7 +18,7 @@ External Networking REDUX
 
 Refactor neutron-gateway and neutron-openvswitch charms to support more
 flexible configuration of 'external' north/south traffic routing to
-tenantn networks.
+tenant networks.
 
 Problem Description
 ===================
@@ -40,7 +40,9 @@ Use Cases
 
 Using the reference approach to external networking, its possible to have
 multiple external networks served from the same set of neutron gateway
-units, potentially on the same physical network with VLAN segementation:
+units, potentially on the same physical network with VLAN segmentation:
+
+.. code-block:: bash
 
     neutron net-create --provider:network_type vlan \
                        --provider:segmentation_id 400 \
@@ -55,6 +57,8 @@ units, potentially on the same physical network with VLAN segementation:
 
 
 with the associated neutron-gateway configuration:
+
+.. code-block:: bash
 
     neutron-gateway:
         bridge-mappings:         physnet1:br-data
@@ -133,7 +137,7 @@ along with openstack-charm-testing.
 Dependencies
 ============
 
-- No additional dependencies for this spec.
+- No additional dependencies for this specification.
 
 References
 ----------
