@@ -1,8 +1,8 @@
-.. nova-specs documentation master file
+.. charm-specs documentation master file
 
-============================
-OpenStack Nova Project Plans
-============================
+=============================
+OpenStack Charm Project Plans
+=============================
 
 Priorities
 ==========
@@ -15,9 +15,6 @@ on for the upcoming release. This is the output of those discussions:
    :maxdepth: 1
 
    priorities/newton-priorities
-   priorities/mitaka-priorities
-   priorities/liberty-priorities
-   priorities/kilo-priorities
 
 Specifications
 ==============
@@ -29,10 +26,6 @@ Here you can find the specs, and spec template, for each release:
    :maxdepth: 1
 
    specs/newton/index
-   specs/mitaka/index
-   specs/liberty/index
-   specs/kilo/index
-   specs/juno/index
 
 There are also some approved backlog specifications that are looking for owners:
 
@@ -45,7 +38,7 @@ There are also some approved backlog specifications that are looking for owners:
 Process
 =======
 
-Documentation for nova-specs process:
+Documentation for charm-specs process:
 
 .. toctree::
    :maxdepth: 1
