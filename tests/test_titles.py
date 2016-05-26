@@ -106,7 +106,7 @@ class TestTitles(testtools.TestCase):
         releases = [x.split('/')[1] for x in glob.glob('specs/*/')]
         self.assertTrue(len(releases), "Not able to find spec directories")
         for release in releases:
-            with open("specs/%s-template.rst" % release) as f:
+            with open("specs/template.rst") as f:
                 template = f.read()
             spec = docutils.core.publish_doctree(template)
             template_titles = self._get_titles(spec)
