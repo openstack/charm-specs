@@ -1,6 +1,6 @@
-==========================
-Nova Newton Specifications
-==========================
+===========================
+Charm Newton Specifications
+===========================
 
 Template:
 

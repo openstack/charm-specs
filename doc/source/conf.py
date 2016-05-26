@@ -219,7 +219,7 @@ latex_documents = [
 #  dir menu entry, description, category)
 texinfo_documents = [
   ('index', 'Charm-specs', u'Charm Design Specs',
-   u'OpenStack Charm Team', 'nova-specs', 'Design specifications for the Charm project.',
+   u'OpenStack Charm Team', 'charm-specs', 'Design specifications for the Charm project.',
    'Miscellaneous'),
 ]
 

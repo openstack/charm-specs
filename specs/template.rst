@@ -17,10 +17,6 @@
 The Title of Your Specification
 ===============================
 
-Include the URL of your StoryBoard story:
-
-https://storyboard.openstack.org/...
-
 Introduction paragraph -- why are we doing anything?
 
 Problem Description
@@ -82,17 +78,6 @@ Repositories
 
 Will any new git repositories need to be created?
 
-Servers
--------
-
-Will any new servers need to be created?  What existing servers will
-be affected?
-
-DNS Entries
------------
-
-Will any other DNS entries need to be created or updated?
-
 Documentation
 -------------
 
@@ -116,10 +101,8 @@ environments/servers, etc.
 Dependencies
 ============
 
-- Include specific references to specs and/or stories in infra, or in
+- Include specific references to specs and/or stories, or in
   other projects, that this one either depends on or is related to.
 
 - Does this feature require any new library or program dependencies
   not already in use?
-
-- Does it require a new puppet module?
