@@ -55,7 +55,7 @@ Use Gerrit topic "<topic_name>" for all patches related to this spec.
 
 .. code-block:: bash
 
-    git-review -t <topic_name>
+    git-review -t ceph-broker
 
 Work Items
 ----------
@@ -91,9 +91,4 @@ environments/servers, etc.
 
 Dependencies
 ============
-
-- Include specific references to specs and/or stories, or in
-  other projects, that this one either depends on or is related to.
-
-- Does this feature require any new library or program dependencies
-  not already in use?
+- charm-layering

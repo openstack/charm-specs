@@ -114,12 +114,9 @@ No additional security concerns.
 Testing
 -------
 
-Because this is such a radical change from what we had 
+Because this is such a radical change from what we had
 before the only way to accurately test it is to show identical functionality
 to what we had before. A mojo spec will be used to demonstrate this.
 
 Dependencies
 ============
-
-- Include specific references to specs and/or stories, or in
-  other projects, that this one either depends on or is related to.
