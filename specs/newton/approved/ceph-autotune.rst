@@ -51,10 +51,6 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
-
-.. code-block:: bash
-
     git-review -t performance-optimizations
 
 Work Items
@@ -77,7 +73,7 @@ Documentation
 -------------
 
 Updates to the README's in the impacted charms will be made as part of this
-change. 
+change.
 
 Security
 --------

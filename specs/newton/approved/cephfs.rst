@@ -51,10 +51,6 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
-
-.. code-block:: bash
-
     git-review -t cephfs
 
 Work Items
@@ -90,6 +86,11 @@ Testing
 
 A mojo spec will be developed to exercise this charm along with amulet tests
 if needed.
+ * Deploy ceph-mon
+ * Deploy ceph-osd
+ * Deploy cephfs
+ * Relate the three
+ * Verify that CephFS can be mounted and responds to reads/writes
 
 Dependencies
 ============

@@ -57,11 +57,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
-
-.. code-block:: bash
-
-    git-review -t <topic_name>
+    git-review -t layering
 
 Work Items
 ----------
@@ -84,7 +80,7 @@ Repositories
 ------------
 
 Will any new git repositories need to be created?  Yes there will initially be
-new repos created however these will migrate to the openstack repo.
+new repos created however these will migrate to the OpenStack repo.
 1. https://github.com/ChrisMacNaughton/juju-interface-ceph-client
 2. https://github.com/ChrisMacNaughton/juju-interface-ceph
 3. https://github.com/ChrisMacNaughton/juju-interface-ceph-radosgw
@@ -120,3 +116,4 @@ to what we had before. A mojo spec will be used to demonstrate this.
 
 Dependencies
 ============
+None
