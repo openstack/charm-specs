@@ -16,7 +16,7 @@
 Ceph Broker
 ===============================
 
-Connect Ceph to existing Openstack’s
+Connect an existing Ceph to a juju deployed Openstack
 
 Problem Description
 ===================
@@ -29,15 +29,17 @@ OpenStack cluster.
 Proposed Change
 ===============
 
-The idea here is to create a charm that can provide the information that Openstack
-needs to connect to the existing Ceph cluster.
+A new charm will be created that acts a a broker between an existing Ceph deployment,
+and a Juju deployed OpenStack Cloud; The charm will provide the same relations as
+the existing ceph-mon charm.
 
 
 Alternatives
 ------------
 
 The alternative is manually connecting the Ceph and OpenStack together.  This is
-fine for some customers but not acceptable for bootstack.
+fine for some customers but not acceptable for bootstack.  This kind of manual
+configuration isn't particularly manageable.
 
 Implementation
 ==============
@@ -51,44 +53,42 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
-
-.. code-block:: bash
-
     git-review -t ceph-broker
 
 Work Items
 ----------
 
-Work items or tasks -- break the feature up into the things that need to be
-done to implement it. Those parts might end up being done by different people,
-but we're mostly trying to understand the timeline for implementation.
+ * Decide on which relations the OpenStack charm requires
+ * Expose all relations needed by way of config.yaml options.
+ * For every relation that OpenStack expects just return the config.yaml
+ values.
 
 Repositories
 ------------
 
-Will any new git repositories need to be created?
+Yes a new repo will be needed for this.
+https://github.com/openstack/charm-ceph-broker
 
 Documentation
 -------------
 
-Will this require a documentation change?  If so, which documents?
-Will it impact developer workflow?  Will additional communication need
-to be made?
+Documentation will be added to the README.md as part of the normal workflow.
 
 Security
 --------
 
-Does this introduce any additional security risks, or are there
-security-related considerations which should be discussed?
+No additional security concerns.
 
 Testing
 -------
 
-What tests will be available or need to be constructed in order to
-validate this?  Unit/functional tests, development
-environments/servers, etc.
+* Deploy OpenStack using juju.
+* Deploy Ceph using juju.
+* Deploy the Ceph-broker to a lxd container or a vm after filling out the
+config.yaml
+* Relate Ceph-broker to OpenStack and verify that OpenStack can talk to Ceph
+* Mojo bundle tests will be used to show this works functionally.
 
 Dependencies
 ============
-- charm-layering
+None

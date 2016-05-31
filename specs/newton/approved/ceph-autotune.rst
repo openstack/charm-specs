@@ -77,7 +77,7 @@ Documentation
 -------------
 
 Updates to the README's in the impacted charms will be made as part of this
-change.
+change. 
 
 Security
 --------
