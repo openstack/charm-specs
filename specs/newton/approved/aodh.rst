@@ -100,7 +100,11 @@ Mojo specification deploying and testing Aodh
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-aodh.git
+A new git repository will be required for the Aodh charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-aodh
 
 Documentation
 -------------
