@@ -12,18 +12,22 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-==================
-Aodh Charm Support
-==================
+==========
+Aodh Charm
+==========
 
-Aodh (alarms and notifications based on metrics) is maturing and fit into the
-Canonical view of core infrastructure projects for OpenStack; Ubuntu main
-inclusion, charming and full QA to allow Canonical customers to deploy and use.
+Aodh (alarms and notifications based on metrics) was split from Ceilometer
+during the Liberty cycle and equivalent function was removed from
+Ceilometer during the Mitaka cycle.
+
+We need to charm Aodh to allow OpenStack Operators to deploy and use
+alarming and notification services as part of an OpenStack cloud.
 
 Problem Description
 ===================
 
-Aodh provides a method generating alarms and notifications based on metrics.
+Aodh provides a method generating alarms and notifications based on
+metrics.
 
 Proposed Change
 ===============
@@ -41,7 +45,7 @@ The new Aodh charm should include, as a minimum, the following features:
 Alternatives
 ------------
 
-Manually review metrics and trigger alarms
+Manually review metrics and trigger alarms.
 
 Implementation
 ==============
@@ -55,7 +59,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "aodh" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -88,7 +92,7 @@ Provide Aodh charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Aodh
-#############################################
+=============================================
 
 - Write Mojo spec for deploying Mojo in an HA configuration and testing
   automatic and manual creation of DNS records.
@@ -101,7 +105,7 @@ git@github.com:openstack-charmers/charm-aodh.git
 Documentation
 -------------
 
-The Aodh charm should contain a README with instructions on deploying the 
+The Aodh charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security
