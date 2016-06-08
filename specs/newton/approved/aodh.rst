@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -69,7 +69,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Aodh to strip all debconf/dbconfig related code from
   the packaging.
@@ -79,7 +79,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide Aodh charm
-==================
+++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Aodh.
@@ -92,7 +92,7 @@ Provide Aodh charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Aodh
-=============================================
++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying Mojo in an HA configuration and testing
   automatic and manual creation of DNS records.

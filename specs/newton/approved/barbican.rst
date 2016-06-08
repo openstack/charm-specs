@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -12,13 +12,12 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-===============================
-Barbican Charm Support
-===============================
+==============
+Barbican Charm
+==============
 
-OpenStack Key Manager (Barbican) is maturing and fits into the Canonical view
-of core infrastructure projects for OpenStack; Ubuntu main inclusion, charming
-and full QA to allow Canonical customers to deploy and use.
+Provide a charm for deploying Barbican with support for associated
+HSM modules/devices.
 
 Problem Description
 ===================
@@ -30,7 +29,7 @@ provides an interface on top of an HSM for doing that.
 Proposed Change
 ===============
 
-Barbican  will need to undergo MIR review for main inclusion; this process
+Barbican will need to undergo MIR review for main inclusion; this process
 should include stripping of all debconf/dbconfig related code from the
 packaging.
 
@@ -63,7 +62,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "barbican" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -73,7 +72,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Barbican to strip all debconf/dbconfig related code from
   the packaging.
@@ -83,7 +82,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide base and interface layers required for OpenStack charms
-===============================================================
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 - Provide rabbitmq interface layer
 - Provide mysql-shared interface layer
@@ -98,7 +97,7 @@ Provide base and interface layers required for OpenStack charms
 - Provide OpenStack base layer with support for workload status
 
 Provide Barbican charm
-===============================
+++++++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Barbican.
@@ -106,7 +105,7 @@ Provide Barbican charm
 - Add config option and accompanying support to enable barbicans use of
   configurable storage backends: ie. HSM (hardware security module)
   NOTE: configuration without HSM is not secure and is for testing purposes
-        only.
+  only.
 - Add config option and accompanying support for upgrades via
   action-managed-upgrade.
 - Add support for deploying Barbican in a highly available configuration
@@ -115,7 +114,7 @@ Provide Barbican charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Barbican
-#################################################
++++++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying Mojo in an HA configuration and testing
   storage and retrieval of secrets.
@@ -123,12 +122,16 @@ Mojo specification deploying and testing Barbican
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-barbican.git
+A new git repository will be required for the Barbican charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-barbican
 
 Documentation
 -------------
 
-The Barbican charm should contain a README with instructions on deploying the 
+The Barbican charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security

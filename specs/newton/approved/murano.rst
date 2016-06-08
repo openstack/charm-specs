@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-=====================
-Murano Charm Support
-=====================
+============
+Murano Charm
+============
 
 To add a service to Openstack provide a catalogue of applications deployable
 on Openstack.
@@ -62,7 +62,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "murano" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -72,7 +72,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Murano to strip all debconf/dbconfig related code from
   the packaging.
@@ -82,7 +82,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide Murano charm
-========================
+++++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Murano.
@@ -95,7 +95,7 @@ Provide Murano charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Murano
-================================================
++++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying murano in an HA configuration and testing
   creation of jobs.
@@ -103,12 +103,16 @@ Mojo specification deploying and testing Murano
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-murano.git
+A new git repository will be required for the Murano charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-murano
 
 Documentation
 -------------
 
-The Murano charm should contain a README with instructions on deploying the 
+The Murano charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security

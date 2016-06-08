@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -12,18 +12,18 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-=====================
-Trove Charm Support
-=====================
+===========
+Trove Charm
+===========
 
 To add a service to Openstack to provide on-demand databases.
 
 Problem Description
 ===================
 
-As a cloud user I need be able to deploy a database that is  scalable and
+As a cloud user I need be able to deploy a database that is scalable and
 reliable quickly and easily without the burden of handling complex
-administrative tasks. 
+administrative tasks.
 
 Proposed Change
 ===============
@@ -43,7 +43,9 @@ The new Trove charm should include, as a minimum, the following features:
 Alternatives
 ------------
 
-Juju delpoy {mysql,percona-cluster,cassandra,etc}
+.. code-block:: bash
+
+    juju deploy {mysql,percona-cluster,cassandra,etc}
 
 Implementation
 ==============
@@ -57,7 +59,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "trove" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -67,7 +69,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Trove to strip all debconf/dbconfig related code from
   the packaging.
@@ -77,7 +79,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide Trove charm
-========================
++++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Trove.
@@ -90,7 +92,7 @@ Provide Trove charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Trove
-================================================
+++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying Trove in an HA configuration and testing
   creation of databases.
@@ -98,12 +100,16 @@ Mojo specification deploying and testing Trove
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-trove.git
+A new git repository will be required for the Trove charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-trove
 
 Documentation
 -------------
 
-The Trove charm should contain a README with instructions on deploying the 
+The Trove charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security

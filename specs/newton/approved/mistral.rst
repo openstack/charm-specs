@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-=====================
-Mistral Charm Support
-=====================
+=============
+Mistral Charm
+=============
 
 To add a service to Openstack to set up and manage on-schedule jobs for
 multiple machine.
@@ -24,16 +24,16 @@ Problem Description
 
 As a cloud administrator I have maintenance jobs that I’d like to be run
 against the cloud. I want to ble to set up and manage on-schedule jobs for
-multiple machines. I’d like a single point of control over their schedule. 
+multiple machines. I’d like a single point of control over their schedule.
 
 As a devops engineer I’d like to be able to specify workflows needed for
-deploying environments consisting of multiple VMs and applications. 
+deploying environments consisting of multiple VMs and applications.
 
 As a business process enforcer I’d like to be able to make a request to run a
 complex multi-step business process and have it be fault-tolerant so that if
 the execution crashes at some point on one node then another active node of the
 system can automatically take on and continue from the exact same point where
-it stopped. 
+it stopped.
 
 As a data analyst I need a tool for data crawling. Eg I’d like to be able to
 express as a graph the related tasks I need in order to prepare a financial
@@ -71,7 +71,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "mistral" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -81,7 +81,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Mistral to strip all debconf/dbconfig related code from
   the packaging.
@@ -91,7 +91,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide Mistral charm
-========================
++++++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Mistral.
@@ -104,7 +104,7 @@ Provide Mistral charm
 - Charm should have unit and functional tests.
 
 Mojo specification deploying and testing Mistral
-================================================
+++++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying Mojo in an HA configuration and testing
   creation of jobs.
@@ -112,12 +112,16 @@ Mojo specification deploying and testing Mistral
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-mistral.git
+A new git repository will be required for the Mistral charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-mistral
 
 Documentation
 -------------
 
-The Mistral charm should contain a README with instructions on deploying the 
+The Mistral charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security

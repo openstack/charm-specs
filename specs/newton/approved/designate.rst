@@ -1,6 +1,6 @@
 ..
   Copyright 2016, Canonical UK
-  
+
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
   http://creativecommons.org/licenses/by/3.0/legalcode
@@ -12,18 +12,16 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-=======================
-Designate Charm Support
-=======================
+===============
+Designate Charm
+===============
 
-OpenStack DNS (Designate) is maturing and fit into the Canonical view of core
-infrastructure projects for OpenStack; Ubuntu main inclusion, charming and full
-QA to allow Canonical customers to deploy and use.
+Charm OpenStack DNS (Designate).
 
 Problem Description
 ===================
 
-Designate (DNSaaS) provides a method for managing DNS records for addressing 
+Designate (DNSaaS) provides a method for managing DNS records for addressing
 OpenStack guests and floating IPs.
 
 Proposed Change
@@ -62,7 +60,7 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "<topic_name>" for all patches related to this spec.
+Use Gerrit topic "designate" for all patches related to this spec.
 
 .. code-block:: bash
 
@@ -72,7 +70,7 @@ Work Items
 ----------
 
 Provide fully supported packages for Ubuntu
-===========================================
++++++++++++++++++++++++++++++++++++++++++++
 
 - Package updates for Designate to strip all debconf/dbconfig related code from
   the packaging.
@@ -82,7 +80,7 @@ Provide fully supported packages for Ubuntu
   package into main.
 
 Provide Designate charm
-========================
++++++++++++++++++++++++
 
 - Create skeleton charm layer based on OpenStack base layer and available
   interface layers to deploy Designate.
@@ -95,20 +93,20 @@ Provide Designate charm
 - Charm should have unit and functional tests.
 
 Provide Designate Bind charm
-========================
+++++++++++++++++++++++++++++
 
 - Create bind charm designed to integrate with designate.
 - Ensure charm meets basic non-functional requirements, such as HA and workload
   status
 
 Extend Designate charm
-======================
+++++++++++++++++++++++
 
 - Add support for Designate integration with Neutron to extend the
   automatically created record information.
 
 Mojo specification deploying and testing Designate
-##################################################
+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 - Write Mojo spec for deploying Mojo in an HA configuration and testing
   automatic and manual creation of DNS records.
@@ -116,12 +114,18 @@ Mojo specification deploying and testing Designate
 Repositories
 ------------
 
-git@github.com:openstack-charmers/charm-designate.git
+New git repositories will be required for the Designate and
+Designate Bind charms:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-designate
+    git://git.openstack.org/openstack/charm-designate-bind
 
 Documentation
 -------------
 
-The Designate charm should contain a README with instructions on deploying the 
+The Designate charm should contain a README with instructions on deploying the
 charm. A blog post is optional but would be a useful addition.
 
 Security

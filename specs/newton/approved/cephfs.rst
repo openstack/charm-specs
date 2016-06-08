@@ -16,27 +16,30 @@
 CephFS
 ===============================
 
- CephFS has recently gone GA and we can now move forward with offering
- this to people as a charm. Up until this point it was considered too
- experimental to store production data on.
+CephFS has recently gone GA and we can now move forward with offering
+this to people as a charm. Up until this point it was considered too
+experimental to store production data on.
 
 Problem Description
 ===================
 
-A new CephFS charm will be created. This charm will leverage the Ceph base layer.
+A new CephFS charm will be created. This charm will leverage the Ceph
+base layer.
 
 Proposed Change
 ===============
 
-A new CephFS charm will be created. This charm will leverage the Ceph base layer.
-The effort required should be small once the Ceph base layer is ready to go.
+A new CephFS charm will be created. This charm will leverage the Ceph
+base layer. The effort required should be small once the Ceph base
+layer is ready to go.
 
 Alternatives
 ------------
 
-GlusterFS is an alternative to CephFS and will probably fit many users needs.
-However there are users who don't want to deploy additional hardware to create
-another cluster so this can be convenient in those cases.
+GlusterFS is an alternative to CephFS and will probably fit many users
+needs. However there are users who don't want to deploy additional
+hardware to create another cluster so this can be convenient in those
+cases.
 
 Implementation
 ==============
@@ -51,24 +54,37 @@ Primary assignee:
 Gerrit Topic
 ------------
 
+Use Gerrit topic "cephfs" for all patches related to this spec.
+
+.. code-block:: bash
+
     git-review -t cephfs
 
 Work Items
 ----------
 
-Work items or tasks -- break the feature up into the things that need to be
-done to implement it. Those parts might end up being done by different people,
-but we're mostly trying to understand the timeline for implementation.
-1. Create the ceph-fs charm utilizing the base Ceph layer
- - Expose interesting config items such as: mds cache size, mds bal mode
- - Create actions to allow blacklisting of misbehaving clients, breaking of locks,
-creating new filesystems, add_data_pool, remove_data_pool, set quotas, etc.
-2. Create an interface to allow other charms to mount the filesytem.
+ceph-fs charm
++++++++++++++
+
+- Create the ceph-fs charm utilizing the base Ceph layer
+- Expose interesting config items such as: mds cache size, mds bal mode
+- Create actions to allow blacklisting of misbehaving clients, breaking
+  of locks, creating new filesystems, add_data_pool, remove_data_pool,
+  set quotas, etc.
+
+cephfs-interface
+++++++++++++++++
+
+- Create an interface to allow other charms to mount the filesytem.
 
 Repositories
 ------------
 
-1. github.com/openstack/charm-ceph-fs
+A new git repository will be required to host the ceph-fs charm:
+
+.. code-block:: bash
+
+    git://git.openstack.org/openstack/charm-ceph-fs
 
 Documentation
 -------------
@@ -85,7 +101,8 @@ Testing
 -------
 
 A mojo spec will be developed to exercise this charm along with amulet tests
-if needed.
+if needed:
+
  * Deploy ceph-mon
  * Deploy ceph-osd
  * Deploy cephfs
