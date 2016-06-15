@@ -29,10 +29,6 @@ provides an interface on top of an HSM for doing that.
 Proposed Change
 ===============
 
-Barbican will need to undergo MIR review for main inclusion; this process
-should include stripping of all debconf/dbconfig related code from the
-packaging.
-
 One new charm - Barbican;  Charm needs to take into account potential use of
 backed hardware security modules (HSM) - this might be nicely done using the
 cinder-backend approach as a subordinate charm to avoid polluting the main
@@ -70,16 +66,6 @@ Use Gerrit topic "barbican" for all patches related to this spec.
 
 Work Items
 ----------
-
-Provide fully supported packages for Ubuntu
-+++++++++++++++++++++++++++++++++++++++++++
-
-- Package updates for Barbican to strip all debconf/dbconfig related code from
-  the packaging.
-- MIR review for Barbican - Evaluate package and source according to
-  https://wiki.ubuntu.com/MainInclusionProcess, open corresponding bug, work
-  with Ubuntu MIR team and make any other necessary package changes to get
-  package into main.
 
 Provide base and interface layers required for OpenStack charms
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

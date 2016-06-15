@@ -33,10 +33,6 @@ will become an integration point for various applications and services.
 Proposed Change
 ===============
 
-Murano will need to undergo MIR review for main inclusion; this process
-should include stripping of all debconf/dbconfig related code from the
-packaging.
-
 One new charm - Murano with corresponding tests and QA CI/setup.
 
 The new Murano charm should include, as a minimum, the following features:
@@ -70,16 +66,6 @@ Use Gerrit topic "murano" for all patches related to this spec.
 
 Work Items
 ----------
-
-Provide fully supported packages for Ubuntu
-+++++++++++++++++++++++++++++++++++++++++++
-
-- Package updates for Murano to strip all debconf/dbconfig related code from
-  the packaging.
-- MIR review for Murano - Evaluate package and source according to
-  https://wiki.ubuntu.com/MainInclusionProcess, open corresponding bug, work
-  with Ubuntu MIR team and make any other necessary package changes to get
-  package into main.
 
 Provide Murano charm
 ++++++++++++++++++++

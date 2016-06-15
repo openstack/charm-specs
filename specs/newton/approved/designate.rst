@@ -27,10 +27,6 @@ OpenStack guests and floating IPs.
 Proposed Change
 ===============
 
-Designate will need to undergo MIR review for main inclusion; this process
-should include stripping of all debconf/dbconfig related code from the
-packaging.
-
 Two new charms - designate and designate-bind - designate provides the API/RPC
 services, and bind provides a flexible scale out service for managing BIND DNS
 servers; the interfaces between the two charms should be sufficiently flexible
@@ -68,16 +64,6 @@ Use Gerrit topic "designate" for all patches related to this spec.
 
 Work Items
 ----------
-
-Provide fully supported packages for Ubuntu
-+++++++++++++++++++++++++++++++++++++++++++
-
-- Package updates for Designate to strip all debconf/dbconfig related code from
-  the packaging.
-- MIR review for Designate - Evaluate package and source according to
-  https://wiki.ubuntu.com/MainInclusionProcess, open corresponding bug, work
-  with Ubuntu MIR team and make any other necessary package changes to get
-  package into main.
 
 Provide Designate charm
 +++++++++++++++++++++++
