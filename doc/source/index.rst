@@ -14,6 +14,7 @@ on for the upcoming release. This is the output of those discussions:
    :glob:
    :maxdepth: 1
 
+   priorities/ocata-priorities
    priorities/newton-priorities
 
 Specifications
@@ -25,6 +26,7 @@ Here you can find the specs, and spec template, for each release:
    :glob:
    :maxdepth: 1
 
+   specs/ocata/index
    specs/newton/index
 
 There are also some approved backlog specifications that are looking for owners:

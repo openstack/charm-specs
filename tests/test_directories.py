@@ -22,7 +22,7 @@ class TestDirectories(testtools.TestCase):
         releases = [x.split('/')[1] for x in glob.glob('specs/*/')]
         for release in releases:
             files = os.listdir("specs/%s/" % release)
-            valid = ['redirects', 'implemented', 'approved']
+            valid = ['redirects', 'implemented', 'approved', 'backlog']
             for name in files:
                 if name.startswith('.'):
                     continue
