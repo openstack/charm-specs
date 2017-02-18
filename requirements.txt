@@ -1,3 +1,4 @@
+docutils!=0.13.1,>=0.11 # OSI-Approved Open Source, Public Domain
 oslosphinx
 pbr>=1.6  # Apache-2.0
 sphinx>=1.1.2,<1.2
