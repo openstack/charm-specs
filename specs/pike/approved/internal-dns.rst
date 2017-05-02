@@ -119,6 +119,45 @@ In order to enable internal DNS resolution, the user must set the
 ``enable-ml2-dns`` to True. The default value is False in order to provide
 backwards compatibility with existing deployments.
 
+DNS Forwarding Servers
+----------------------
+
+The dns-domain alone is not enough to provide all the necessary configuration
+options for the neutron networking. In most instances, the administrator will
+need to be able to specify a dns fowarding server as well. In order to do this,
+a new config option will be provided allowing the user to set configure the
+nameservers to use as forwarding servers.
+
+Per [#]_ there are three ways of configuring DNS nameservers for instances
+launched in the cloud. Tenant subnets can have their own nameservers identified
+and requires ano additional work in order to enable that. Default nameserver
+information is provided by the DHCP agents to point to the dhcp port address
+but contains no additional forwarding servers. By default, this only allows
+instances to be able to resolve other instances in the subnet. To amend this,
+the neutron-openvswitch and neutron-gateway charms will be amended to allow
+the user to specify the DNS forwarding servers. The charms will not include
+any options to allow the use of the DNS resolvers configured on the DHCP
+agent's host (the dnsmasq_local_resolv option) as it poses a risk of leaking
+internal infrastructure level resources to the instances.
+
+.. [#] https://docs.openstack.org/draft/networking-guide/config-dns-res.html
+
+As such, the neutron-openvswitch and neutron-gateway charms will add an option
+``dns-servers``, which will configure the dnsmasq_dns_servers option in the
+dhcp_agent.ini file. This option is defined as follows:
+
+.. code-block:: yaml
+
+    dns-servers:
+      type: string
+      default:
+      description: |
+        A comma-separated list of DNS servers which will be used by dnsmasq as
+        forwarders.
+
+The ``dns-servers`` option will only apply for the neutron-openvswitch charm
+when the ``enable-local-dhcp-and-metadata`` option is set to True.
+
 Relation Implications
 ---------------------
 
@@ -176,12 +215,17 @@ Work Items
 ----------
 
 charm-neutron-api
-  Add new config option to the neutron api charm
-  Add dns-domain to the neutron-plugin-api interface
-  Update README.md to reflect new behavior
+ * Add new config option to the neutron api charm
+ * Add dns-domain to the neutron-plugin-api interface
+ * Update README.md to reflect new behavior
 
 charm-neutron-gateway
-  Update neutron-gatway to consume dns-domain from relation data
+ * Update neutron-gatway to consume dns-domain from relation data
+ * Add dns-servers config option to charm
+
+charm-neutron-openvswitch
+ * Update neutron-openvswitch charm to consume dns-domain from relation data
+ * Add dns-servers config option to charm
 
 Repositories
 ------------
