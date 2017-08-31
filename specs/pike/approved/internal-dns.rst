@@ -140,7 +140,7 @@ any options to allow the use of the DNS resolvers configured on the DHCP
 agent's host (the dnsmasq_local_resolv option) as it poses a risk of leaking
 internal infrastructure level resources to the instances.
 
-.. [#] https://docs.openstack.org/draft/networking-guide/config-dns-res.html
+.. [#] https://docs.openstack.org/newton/networking-guide/config-dns-res.html
 
 As such, the neutron-openvswitch and neutron-gateway charms will add an option
 ``dns-servers``, which will configure the dnsmasq_dns_servers option in the
