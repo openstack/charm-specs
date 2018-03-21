@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-===============================
+===========================================
 Routed Provider Networks for Neutron Charms
-===============================
+===========================================
 
 As L3-oriented fabrics get more widely deployed in DCs there is a need to
 support multi-segment networks in Neutron charms. Routed provider networks
@@ -32,7 +32,7 @@ define isolated broadcast domains and should have different subnets
 used on them for proper addressing and routing to be implemented.
 
 Provider Networks in Neutron used to have a single segment but starting with
-`Newton <https://specs.openstack.org/openstack/neutron-specs/specs/newton/routed-networks.html>`__ 
+`Newton <https://specs.openstack.org/openstack/neutron-specs/specs/newton/routed-networks.html>`__
 there is support for multi-segment networks which are called routed provider
 networks. From the data model perspective a subnet is associated with a
 network segment and a given provider network becomes multi-segment as a
@@ -76,7 +76,7 @@ Also, from the Charm and Juju perspective the following needs to be addressed:
 * Appropriate placement of units to make sure necessary agents are deployed.
 
 Deployment Scenarios
-+++++++++++++++++++++++
+--------------------
 
 Deployment scenarios should include both setups with charm-neutron-gateway and
 without it. Moreover, for the use-case where charm neutron-gateway is present
@@ -95,9 +95,9 @@ Given that there are certain limitations in how routed provider networks are
 implemented in Newton release this spec is targeted at Ocata release.
 
 Segments Service Plugin
-+++++++++++++++++++++++
+-----------------------
 
-`A related Ocata documentation section <https://docs.openstack.org/ocata/networking-guide/config-routed-networks.html#example-configuration>`__ contains 3 major configuration requirements: 
+`A related Ocata documentation section <https://docs.openstack.org/ocata/networking-guide/config-routed-networks.html#example-configuration>`__ contains 3 major configuration requirements:
 
 * "segments" needs to be added to the service_plugins list (neutron-api);
 * A compute placement API section needs to be added to neutron.conf;
@@ -129,7 +129,7 @@ This distiction is what allows unconditional addition of this service plugin
 for the standard ML2 core plugin.
 
 Multiple L2 Networks (Switch Fabrics)
-+++++++++++++++++++++++
+-------------------------------------
 
 Each network segment includes `network type information <https://github.com/openstack/neutron/blob/3e34db0c19cdcc86cd5f1b72d6374c3eca0faa7e/neutron/db/models/segment.py#L30-L54>`__ this means that for ML2 plugin flat_networks and network_vlan_ranges
 options there may be different values depending on a switch fabric. In this
@@ -159,125 +159,127 @@ connected to will have identical configuration, we need to account for a
 general case.
 
 Multi-application approach allows to avoid any charm modifications besides
-charm-neutron-api and have the following content in bundle.yaml::
+charm-neutron-api and have the following content in bundle.yaml:
 
-        variables:
-          data-port:           &data-port           br-data:bond1
-          vlan-ranges:         &vlan-ranges         provider-fab1:2:3 provider-fab2:4:5 provider-fab3:6:7
-          bridge-mappings-fab1: &bridge-mappings-fab1 provider-fab1:br-data
-          bridge-mappings-fab2: &bridge-mappings-fab2 provider-fab2:br-data
-          bridge-mappings-fab3: &bridge-mappings-fab3 provider-fab3:br-data
-          vlan-ranges-fab1:     &vlan-ranges-fab1     provider-fab1:2:3
-          vlan-ranges-fab2:     &vlan-ranges-fab2     provider-fab2:4:5
-          vlan-ranges-fab3:     &vlan-ranges-fab3     provider-fab3:6:7
+.. code-block:: yaml
 
-        # allocate machines such that there are enough
-        # machines in attached to each switch fabric
-        # fabrics do not necessarily correspond to
-        # availability zones
-        machines:
-          "0":
-            constraints: tags=compute,fab1
-          "1":
-            constraints: tags=compute,fab1
-          "2":
-            constraints: tags=compute,fab1
-          "3":
-            constraints: tags=compute,fab1
-          "4":
-            constraints: tags=compute,fab1
-          "5":
-            constraints: tags=compute,fab2
-          "6":
-            constraints: tags=compute,fab2
-          "7":
-            constraints: tags=compute,fab2
-          "8":
-            constraints: tags=compute,fab2
-          "9":
-            constraints: tags=compute,fab3
-          "10":
-            constraints: tags=compute,fab3
-          "11":
-            constraints: tags=compute,fab3
-          "12":
-            constraints: tags=compute,fab3
-        services:
-          nova-compute-kvm-fab1:
-            charm: cs:nova-compute
-            num_units: 5
-            bindings:
-            # ...
-            options:
-            # ...
-              default-availability-zone: az1
-            to:
-            - 0
-            - 1
-            - 2
-            - 3
-            - 4
-          nova-compute-kvm-fab2:
-            charm: cs:nova-compute
-            num_units: 5
-            bindings:
-            # ...
-            options:
-            # ...
-              default-availability-zone: az2
-            to:
-            - 5
-            - 6
-            - 7
-            - 8
-          nova-compute-kvm-fab3:
-            charm: cs:nova-compute
-            num_units: 5
-            bindings:
-            # ...
-            options:
-            # ...
-              default-availability-zone: az3
-            to:
-            - 9
-            - 10
-            - 11
-            - 12
-          neutron-openvswitch-fab1:
-            charm: cs:neutron-openvswitch
-            num_units: 0
-            bindings:
-              data: *overlay-space-fab1
-            options:
-              bridge-mappings: *bridge-mappings-fab1
-              vlan-ranges: *vlan-ranges-fab1
-              prevent-arp-spoofing: True
-              data-port: *data-port
-              enable-local-dhcp-and-metadata: True
-          neutron-openvswitch-fab2:
-            charm: cs:neutron-openvswitch
-            num_units: 0
-            bindings:
-              data: *overlay-space-fab2
-            options:
-              bridge-mappings: *bridge-mappings-fab2
-              vlan-ranges: *vlan-ranges-fab2
-              prevent-arp-spoofing: True
-              data-port: *data-port
-              enable-local-dhcp-and-metadata: True
-          neutron-openvswitch-fab3:
-            charm: cs:neutron-openvswitch
-            num_units: 0
-            bindings:
-              data: *overlay-space-fab3
-            options:
-              bridge-mappings: *bridge-mappings-fab3
-              vlan-ranges: *vlan-ranges-fab3
-              prevent-arp-spoofing: True
-              data-port: *data-port
-              enable-local-dhcp-and-metadata: True
-        # each of the apps needs to be related appropriately
+   variables:
+      data-port:           &data-port           br-data:bond1
+      vlan-ranges:         &vlan-ranges         provider-fab1:2:3 provider-fab2:4:5 provider-fab3:6:7
+      bridge-mappings-fab1: &bridge-mappings-fab1 provider-fab1:br-data
+      bridge-mappings-fab2: &bridge-mappings-fab2 provider-fab2:br-data
+      bridge-mappings-fab3: &bridge-mappings-fab3 provider-fab3:br-data
+      vlan-ranges-fab1:     &vlan-ranges-fab1     provider-fab1:2:3
+      vlan-ranges-fab2:     &vlan-ranges-fab2     provider-fab2:4:5
+      vlan-ranges-fab3:     &vlan-ranges-fab3     provider-fab3:6:7
+
+   # allocate machines such that there are enough
+   # machines in attached to each switch fabric
+   # fabrics do not necessarily correspond to
+   # availability zones
+   machines:
+      "0":
+        constraints: tags=compute,fab1
+      "1":
+        constraints: tags=compute,fab1
+      "2":
+        constraints: tags=compute,fab1
+      "3":
+        constraints: tags=compute,fab1
+      "4":
+        constraints: tags=compute,fab1
+      "5":
+        constraints: tags=compute,fab2
+      "6":
+        constraints: tags=compute,fab2
+      "7":
+        constraints: tags=compute,fab2
+      "8":
+        constraints: tags=compute,fab2
+      "9":
+        constraints: tags=compute,fab3
+      "10":
+        constraints: tags=compute,fab3
+      "11":
+        constraints: tags=compute,fab3
+      "12":
+        constraints: tags=compute,fab3
+    services:
+      nova-compute-kvm-fab1:
+        charm: cs:nova-compute
+        num_units: 5
+        bindings:
         # ...
+        options:
+        # ...
+          default-availability-zone: az1
+        to:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+      nova-compute-kvm-fab2:
+        charm: cs:nova-compute
+        num_units: 5
+        bindings:
+        # ...
+        options:
+        # ...
+          default-availability-zone: az2
+        to:
+        - 5
+        - 6
+        - 7
+        - 8
+      nova-compute-kvm-fab3:
+        charm: cs:nova-compute
+        num_units: 5
+        bindings:
+        # ...
+        options:
+        # ...
+          default-availability-zone: az3
+        to:
+        - 9
+        - 10
+        - 11
+        - 12
+      neutron-openvswitch-fab1:
+        charm: cs:neutron-openvswitch
+        num_units: 0
+        bindings:
+          data: \*overlay-space-fab1
+        options:
+          bridge-mappings: \*bridge-mappings-fab1
+          vlan-ranges: \*vlan-ranges-fab1
+          prevent-arp-spoofing: True
+          data-port: \*data-port
+          enable-local-dhcp-and-metadata: True
+      neutron-openvswitch-fab2:
+        charm: cs:neutron-openvswitch
+        num_units: 0
+        bindings:
+          data: \*overlay-space-fab2
+        options:
+          bridge-mappings: \*bridge-mappings-fab2
+          vlan-ranges: \*vlan-ranges-fab2
+          prevent-arp-spoofing: True
+          data-port: \*data-port
+          enable-local-dhcp-and-metadata: True
+      neutron-openvswitch-fab3:
+        charm: cs:neutron-openvswitch
+        num_units: 0
+        bindings:
+          data: \*overlay-space-fab3
+        options:
+          bridge-mappings: \*bridge-mappings-fab3
+          vlan-ranges: \*vlan-ranges-fab3
+          prevent-arp-spoofing: True
+          data-port: \*data-port
+          enable-local-dhcp-and-metadata: True
+    # each of the apps needs to be related appropriately
+    # ...
 
 The above bundle part is for a setup without charm-neutron-gateway, although
 it can be added easily using the same approach. Given that there are no
@@ -287,7 +289,7 @@ is the infrastructure routing for overlay networks on different fabrics so
 that VXLAN or other tunnels can be created between endpoints.
 
 Documented Requirements and Limitations
-+++++++++++++++++++++++
+---------------------------------------
 
 The Ocata Routed Provider Networks `guide mentions scheduler limitations, <https://docs.openstack.org/ocata/networking-guide/config-routed-networks.html#limitations>`__
 however, they are made in reference to Newton and are likely outdated. Looking
@@ -310,6 +312,11 @@ This might be considered a serious limitation, however:
 An `RFE <https://pad.lv/1667329>`__ exists to address this limitation based on
 `subnet service types <https://specs.openstack.org/openstack/neutron-specs/specs/newton/subnet-service-types.html>`__ and `dynamic routing <https://docs.openstack.org/newton/networking-guide/config-bgp-dynamic-routing.html>`__.
 
+Alternatives
+------------
+
+N/A
+
 Implementation
 ==============
 
@@ -327,7 +334,7 @@ to this spec.
 
 .. code-block:: bash
 
-    git-review -t 1743743-fe-routed-provider-networks
+   git-review -t 1743743-fe-routed-provider-networks
 
 Work Items
 ----------

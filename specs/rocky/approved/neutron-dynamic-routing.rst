@@ -33,9 +33,9 @@ ways, a way of communicating changes between OpenStack and external routers is
 needed.
 
 Since networks in OpenStack are self serviced, any addition or removal of
-OpenStack network should not depend on network administrator’s actions. Network
-limitations should be set up front. This is further facilitated by the use of
-subnet pools in OpenStack.
+OpenStack network should not depend on network administrator’s actions.
+Network limitations should be set up front. This is further facilitated by
+the use of subnet pools in OpenStack.
 
 Other implications include decoupling subnets from layer 2, allowing different
 next-hops for floating IPs.
@@ -101,8 +101,8 @@ number of connections grows. In cloud, where many VMs can establish connections
 to various external peers, this can require significant memory and cpu
 resources. Neutron gateway doesn't really scale without manual intervention. On
 top of that, if only NAT is used, peers can’t really know which instance
-established connection, they only know connection came ‘from the cloud’. Same
-problems apply to DVR.
+established connection, they only know connection came ‘from the cloud’.
+Same problems apply to DVR.
 
 Static routes on physical gateways are the closest thing to BGP solution. The
 only drawback is operational; in case address scope in Neutron changes, these
