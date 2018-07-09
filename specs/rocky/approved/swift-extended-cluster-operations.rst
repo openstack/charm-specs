@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-===============================
+=================================
 Extended Swift Cluster Operations
-===============================
+=================================
 
 The Swift charms currently support a subset of operations required to support
 a Swift cluster over time. This spec proposes expanding on what we already have

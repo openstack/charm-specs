@@ -32,9 +32,9 @@ be recovered without access to the appropriate encryption keys.
 Proposed Change
 ===============
 
-Underlying storage devices will be protected using dm-crypt/LUKS with encryption
-keys stored directly in Hashicorp Vault. No local copy of the key is made during
-the encryption process or the decryption process on boot.
+Underlying storage devices will be protected using dm-crypt/LUKS with
+encryption keys stored directly in Hashicorp Vault. No local copy of the key is
+made during the encryption process or the decryption process on boot.
 
 A new tool 'vaultlocker' will be used to LUKS format block devices, directly
 storing encryption keys in Vault.  Keys are referenced using the UUID of the

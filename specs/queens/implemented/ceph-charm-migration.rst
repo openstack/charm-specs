@@ -39,7 +39,7 @@ In order to migrate to the new architecture, users will need to:
    monitor cluster.
 
 #. Relate the ceph application to the new ceph-mon application.  The relation
-   between these two applications is defined in the new `ceph-bootstrap`
+   between these two applications is defined in the new ``ceph-bootstrap``
    interface, documented herein.
 
 #. Update the deployments using the ceph-client relation to point to the new
@@ -98,10 +98,10 @@ New ceph-bootstrap Interface
 
 Notably, there exists no way of adding a relation between the ceph-mon charm
 and the all-in-one ceph charm. To address this, a new interface will be added
-to the ceph and ceph-mon charms called `ceph-bootstrap`, enabling the
-necessary information for joining the cluster to be shared. This is
-essentially the same information that's shared on the peer `mon` interface for
-the ceph charm itself.
+to the ceph and ceph-mon charms called ``ceph-bootstrap``, enabling the
+necessary information for joining the cluster to be shared. This is essentially
+the same information that's shared on the peer ``mon`` interface for the ceph
+charm itself.
 
 Since the charms are not reactive, no new interface repository is required.
 The information exchanged will contain the following:
@@ -133,7 +133,7 @@ charm will fail to join the relation.
 
 Changes to charm-ceph
 ---------------------
-In addition to implementing the `ceph-bootstrap` interface, the all-in-one
+In addition to implementing the ``ceph-bootstrap`` interface, the all-in-one
 ceph charm needs to properly clean up when removing itself. It should not
 remove any OSDs or Ceph packages as this would interrupt the operational ceph
 cluster. However, the charm needs to remove its ceph.conf file as a
@@ -162,7 +162,7 @@ Additional assignee(s):
 Gerrit Topic
 ------------
 
-Use Gerrit topic `charm-ceph-migration` for all patches related to this spec.
+Use Gerrit topic ``charm-ceph-migration`` for all patches related to this spec.
 
 .. code-block:: bash
 

@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-===============================
+=================================
 Service Restart Control In Charms
-===============================
+=================================
 
 Openstack charms continuously respond to hook events from their peers
 related applications which frequently result in configuration

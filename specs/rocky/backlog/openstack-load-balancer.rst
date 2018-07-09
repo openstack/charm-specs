@@ -178,9 +178,9 @@ Updates to keystone endpoint calculation code
 Currently the following competing options are used to calculate which EP should
 be registered in Keystone:
 
-* os-*-network set do resolve_address old method
+* os-\*-network set do resolve_address old method
 * dnsha use dnsha
-* os-*-hostname set use hostname
+* os-\*-hostname set use hostname
 * juju network space binding via extra-bindings
 * prefer ipv6 via configuration option
 * presence of {public,internal,admin}-backend relations to
