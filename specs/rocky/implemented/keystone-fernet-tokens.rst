@@ -33,8 +33,8 @@ symmetric encryption keys, or fernet keys.
 .. _Fernet: https://github.com/fernet/spec
 .. _MessagePacked: http://msgpack.org/
 
-Task Description
-================
+Problem Description
+===================
 
 Keystone has had support for Fernet tokens since Kilo, so all services support
 fernet token authorization.  In the upcoming Rocky release the sql token driver
@@ -192,7 +192,7 @@ immediate; indeed, it could be just before the next key rotation in the worst
 case, although, this is extremely unlikely to be the case.
 
 Alternatives
-============
+------------
 
 In the Openstack rocky release, *fernet* is the only token provider available.
 Therefore, there is no alternative.

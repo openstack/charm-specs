@@ -1,5 +1,5 @@
 ..
-  Copyright 2016, Canonical UK
+  Copyright 2017 Canonical LTD
 
   This work is licensed under a Creative Commons Attribution 3.0
   Unported License.
@@ -12,82 +12,104 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-===========================
-Keystone Federation Support
-===========================
+===================
+Keystone Federation
+===================
 
-Keystone Federation is a maturing feature and charm support for it is
-frequently requested.
+Keystone can be configured to integrate with a number of different identity
+providers in a number of different configurations. This spec attempts to
+discuss how to implement pluggable backends that utilise Keystone
+federations.
 
 Problem Description
 ===================
 
-Single identity across a cloud with multiple, geographically disparate
-regions is complex for operators; Keystone federation provides the
-ability for multiple clouds to federate identity trusty between
-regions, supporting single identity either via keystone or via a 3rd
-party identity provider. The use of Keystone Federation will help us
-build bigger, more manageable clouds across geographies.
+When deploying the OpenStack charms to an enterprise customer they are likely
+to want to integrate OpenStack authentication with an existing identity
+provider like AD, LDAP, Kerberos etc. There are two main ways that Keystone
+appears to achieve this integration: backends and federation. Although this
+spec is concerned with federation it is useful to go over backends to in an
+attempt to distinguish the two.
+
+The following are not covered here:
+
+- Integration with Kerberos
+- Horizon SSO
+- Federated LDAP via SSSD and mod_lookup_identity
+- Keystone acting as an IdP in a federated environment.
+
+Backends
+--------
+
+When keystone uses a backend it is Keystone itself which knows how to manage
+that backend, how to talk to it and how to deal with operations on it. This
+limits the number of backends that keystone can support as each new backend
+needs new logic in Keystone itself. This approach also has negative security
+implications. Keystone may need an account with the backend (an LDAP username
+and password) to perform lookups, these account details will be in clear text
+in the keystone.conf. In addition, all users passwords with flow through
+keystone.
+
+The keystone project highlights SQL and LDAP (inc AD) as their supported
+backends. The status of support for these is as follows:
+
+- SQL: Currently supported by the keystone charm.
+- LDAP: Currently supported by the keystone and keystone-ldap subordinate.
+
+These backends are supported with the Keystone v2 API if they are used
+exclusively. To support multiple backends then Keystone v3 API needs to be used
+and each backend is associated with a particular Keystone domain. This allows
+for service users to be in SQL but users to be in ldap for example.
+
+Adding a new backend is achieved by writing a keystone subordinate charm and
+relating it to keystone via the keystone-domain-backend interface.
+
+Enabling a backend tends to be achieved via the keystone.conf
+
+Federation
+----------
+
+With federation Keystone trusts a remote Identity provider. Keystone
+communicates with that provider using a protocol like SAML or OpenID connect.
+Keystone relies on a local Apache to manage communication and Apache passes
+back to keystone environment variables like REMOTE_USER. Keystone is abstracted
+from the implementation details of talking to the identity provider and never
+sees the users password. When using Federation, LDAP may still be the ultimate
+backend but it is fronted by something providing SAML/OpenID connectivity like
+AD federation service or Shibboleth.
+
+Each Identity provider must be associated with a different domain within
+keystone. The keystone v3 API is needed to support federation.
+
+Compatible Identity Providers:
+(https://docs.openstack.org/ocata/config-reference/identity/federated-identity.html#supporting-keystone-as-a-sp
+):
+
+- OpenID
+- SAML
 
 
 Proposed Change
 ===============
 
-The design of this solution is predicated on the use of the Keystone
-federation features introduced in OpenStack Kilo; these allow Keystone
-to delegate authentication of users to a different identity provider
-(IDP) which might be keystone, but could also be a solution implementing
-one of the methods used for expressing assertions of identity (saml2 or
-OpenID).
+Both Keystone backends and federated backends may need to add config to the
+keystone.conf and/or the Apache WSGI vhost. As such, it makes sense for both
+types to share the existing interface particularly as the existing interface
+is called keystone-domain-backend which does not differentiate between the
+two.
 
-If IDP is keystone, then this is the current straw man
-design:
-
-- A single ‘global’ keystone is set-up as the IDP for the cloud; this
-  service provides authentication for users and the global service
-  catalog for all cloud regions.
-- Region level keystone instances delegate authentication to the global
-  keystone, but also maintain a region level service catalog of endpoints
-  for local use
-
-An end-user accesses the cloud via the entry point of the global keystone;
-at this point the end-user will be redirected to the region level services
-based on which region they which to manage resources within.
-
-In terms of charm design, the existing registration approach for services
-in keystone is still maintained, but each keystone deployment will also
-register its service catalog entries into the global keystone catalog.
-
-They keystone charm will need updating to enable a) operation under apache
-(standalone to be removed in mitaka and b) enablement of required federation
-components.  There will also be impact onto the openstack-dashboard charm to
-enable use of this feature.
-
-There is also a wider charm impact in that we need to re-base onto the
-keystone v3 api across the board to support this type of feature.
-
-The packages to support identity federation will also need to be selected
-and undergo MIR into Ubuntu main this cycle; various options exist:
-
-- SAM: Keystone supports the following implementations:
-       Shibboleth - see Setup Shibboleth.
-       Mellon - see Setup Mellon.
-- OpenID Connect: see Setup OpenID Connect.
-
-The Keystone Federation feature should support:
-
-- Federation between two keystone services in the same model
-- Federation between two keystone services in different models
-- Federation between keystone and an identity provider not managed by
-  Juju
+This spec covers changes add support for federation using either SAML or
+OpenID, to the keystone charm. This will involve extending the
+keystone-domain-backend interface to support passing configuration snippets to
+the Apache vhosts and creating subordinate charms which implement OpenID and
+SAML.
 
 Alternatives
 ------------
 
-Identities can be kept in sync between keystone instances using database
-replication. The keystone charm also supports using LDAP as a backend,
-keystone charms in different models could share the same LDAP backend if
-there service users are stored locally.
+- Add support for federation via OpenID and SAML directly to the keystone
+  charm.
+- Create a new interface for federation via OpenID and SAML
 
 Implementation
 ==============
@@ -96,87 +118,71 @@ Assignee(s)
 -----------
 
 Primary assignee:
-  gnuoy
+  None
+
 
 Gerrit Topic
 ------------
 
-Use Gerrit topic "keystone-federation" for all patches related to this
-spec:
+Use Gerrit topic "keystone_federation" for all patches related to this spec.
 
 .. code-block:: bash
 
-    git-review -t keystone_federation
+    git-review -t <keystone_federation>
 
 Work Items
 ----------
 
-Keystone Investigative Work
-+++++++++++++++++++++++++++
+**Create deployment scripts to create test env for OpenID or SAML integration**
 
-- Deploy multiple juju environments and define one IDP keystone and the
-  rest as SPs. Configuration will be manually applied to units
-- Test OpenID integration with keystone. Configuration will be manually
-  applied to units
+**Extend keystone-domain-backend**
 
-Keystone v3 endpoint enablement
-+++++++++++++++++++++++++++++++
+The keystone-domain-backend interface will need to provide the following:
 
-- Define intercharm protocol for agreeing keystone api version
-- Enable Keystone v3 in keystone charm
-- Enable Keystone v3 in client charms
-- Update Openstack charm testing configuration scripts  to talk keystone
-  v3
-- Create Mojo spec for v3 deploy
+- Modules for Apache to enable
+- Configuration for principle to insert into Apache keystone wsgi vhosts
+- Subordinate triggered restart of Apache
+- Auth method(s) to be added to keystone's [auth] methods list
+- Configuration for principle to insert into keystone.conf
 
+**Configure Keystone to consume new interface**
 
-Keystone to keystone Federation enablement
-++++++++++++++++++++++++++++++++++++++++++
+Keystone charm will need to be updated to respond to events outlined in the
+interface description above
 
-- Switch keystone to use apache for all use cases on deployments >= Liberty
-- Enable keystone to keystone SP/IDP relation using a config option in the
-  charm to define the IDP endpoint (in lieu of cross environment relations)
-- Mojo spec to deploy two regions and test federated access
+**New keystone-openid and keystone-saml subordinates**
 
-Keystone to OpenID 3rd party enablement
-+++++++++++++++++++++++++++++++++++++++
-
-- Backport libapache2-mod-auth-openidc to trusty cloud archive
-- Expose OpenID configuration options to keystone charm, and update keystone
-  apache accordingly.
-- Create bundle for deploying a single region using UbuntuONE for
-  authentication.
-- Mojo spec for multi-region UbuntuONE backed deployment
-
-Keystone to SAML 3rd party enablement
-+++++++++++++++++++++++++++++++++++++
-
-- Expose SAML configuration options to keystone charm, and update keystone
-  apache accordingly.
-- Create bundle for deploying a single region using SAML for authentication.
-- Mojo spec for multi-region SAML backed deployment
+The new subordinates will need to expose all the configuration options needed
+for connecting to the identity provider. It will then need to use the
+interface to pass any required config for Apache or Keystone up to the
+keystone principle.
 
 Repositories
 ------------
 
-No new repositories
+New projects for the interface and new subordinates will be needed.
 
 Documentation
 -------------
 
-The Keystone charm README will be updated with instructions for enabling
-federatioon. A blog post is optional but would be a useful addition.
+This will require documentation in the READMEs of both the subordinates and
+the keystone charm. A blog walking through the deployment and integration
+would be very useful.
 
 Security
 --------
 
-Security review may be required.
+Although a Keystone back-end will determine who has access to the entire
+OpenStack deployment, this specific charm will only change Keystone and Apache
+parameters, avoiding default values and leave the configuration to the user
+should be enough.
 
 Testing
 -------
 
-Code changes will be covered by unit tests; functional testing will be done
-using a combination of Amulet, Bundle tester and Mojo specification.
+The code must be covered by unit tests. Ideally amulet tests would be extended
+to cover this new functionality but deploying a functional openid server for
+keystone to use may not be practical. It must be covered by a Mojo spec though.
 
 Dependencies
 ============
