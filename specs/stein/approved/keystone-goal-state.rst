@@ -33,9 +33,9 @@ software should be set up is determined by a set of information sources.
 
 - Cross-model relations
 
-In its simplest form a charm’s sole goal is to as quickly as possible install a
-piece of software, write its configuration and fire it up enabling the end user
-to make use of the software.
+In its simplest form a charm’s sole goal is to as quickly as possible install
+a piece of software, write its configuration and fire it up enabling the end
+user to make use of the software.
 
 Problem Description
 ===================

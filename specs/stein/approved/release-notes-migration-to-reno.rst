@@ -55,6 +55,11 @@ After the 18.11 Charm release we evaluate and decide on further adoption.
 
 0: https://docs.openstack.org/reno/latest/
 
+Alternatives
+------------
+
+None defined.
+
 Implementation
 ==============
 
