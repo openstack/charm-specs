@@ -29,7 +29,7 @@ to the OpenStack cluster.
 Proposed Change
 ===============
 
-A new charm will be created that acts a a broker between an existing Ceph
+A new charm will be created that acts a broker between an existing Ceph
 deployment, and a Juju deployed OpenStack Cloud; The charm will provide the
 same relations as the existing ceph-mon charm.
 
