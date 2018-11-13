@@ -52,10 +52,10 @@ Considerations for routed provider networks include:
 * live migration and evacutation of instances (constrain to the same L2);
 * DHCP and meta-data agent scheduling.
 
-A `nova spec <http://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/neutron-routed-networks.html
+A `nova spec <https://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/neutron-routed-networks.html
 >`__ for routed provider networks contains a detailed overview of the
 implemenation details to address the above points, including usage of
-`generic resource pools. <http://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/generic-resource-pools.html>`__
+`generic resource pools. <https://specs.openstack.org/openstack/nova-specs/specs/newton/implemented/generic-resource-pools.html>`__
 
 In order to account for IPv4 address ranges associated with segments Neutron
 uses Nova placement API to create IPv4 inventories and update them if needed.

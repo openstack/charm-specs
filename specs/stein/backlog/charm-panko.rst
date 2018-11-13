@@ -44,7 +44,7 @@ used to send data specified by publishers. So were
 
 * Panko dispatcher `deprecation <https://docs.openstack.org/releasenotes/panko/unreleased.html#deprecation-notes>`__.
 * `Notes <https://docs.openstack.org/releasenotes/ceilometer/ocata.html#deprecation-notes>`__ on unneeded duplication of publishers and dispatchers.
-* A `discussion <http://lists.openstack.org/pipermail/openstack-dev/2017-April/115576.html>`__ on dispatchers vs publishers.
+* A `discussion <https://lists.openstack.org/pipermail/openstack-dev/2017-April/115576.html>`__ on dispatchers vs publishers.
 
 This is instead done directly by publishers in Pike and Panko publisher is
 present in Panko's repository itself, not ceilometer repository.
