@@ -104,7 +104,7 @@ Repositories
 Yes, three new repositories will need to be created :
 * charm-neutron-api-ovn
 * charm-ovn-controller
-* charm-neuton-ovn
+* charm-neutron-ovn
 
 Documentation
 -------------
