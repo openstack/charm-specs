@@ -49,7 +49,7 @@ software itself and dynamic scaling of the service.
 
 On the scaling side, most if not all, of the ``octavia`` services benefit from
 being scaled out proportional to the number of running load balancers and load
-balancer life cycle events.  Thus it makse sense to co-locate the API, Worker,
+balancer life cycle events.  Thus it makes sense to co-locate the API, Worker,
 Health Manager and Housekeeping Manager daemons in the same charm unit, and
 scale by increasing the number of charm units deployed.
 

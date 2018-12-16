@@ -42,7 +42,7 @@ effectively maintain a Swift cluster over time:
   have already been initialised.
 
 This forces operators to manually apply changes like adjusting the
-partition-power to accomodate for additional storage added to the cluster. This
+partition-power to accommodate for additional storage added to the cluster. This
 poses great risk since manually editing the rings/builders and syncing them
 across the cluster could easily conflict with the swift-proxy charm's native
 support for doing this resulting in a broken cluster.
@@ -64,7 +64,7 @@ refuse to make changes until the operator has paused the swift-proxy units i.e.
 placed them into "maintenance mode" which will shutdown the api services and
 block any restarts until the units are resumed. The user will also have the
 option to set disable-ring-balance=true if they want check that their changes
-have been applied successully (to the builder files) prior to having the rings
+have been applied successfully (to the builder files) prior to having the rings
 rebuilt and sycned across the cluster.
 
 For the swift-storage charms, where currently one can only add devices but not
