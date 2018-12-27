@@ -37,7 +37,7 @@ Mitaka release.
 Proposed Change
 ===============
 
-Supporting SR-IOV will require changes in three charms; specifcally:
+Supporting SR-IOV will require changes in three charms; specifically:
 
 - neutron-api: Enablement of the ML2 mechanism driver for SR-IOV
 - nova-cloud-controller: Enablement of appropriate scheduler filters for
