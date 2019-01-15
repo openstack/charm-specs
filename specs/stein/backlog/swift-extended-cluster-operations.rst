@@ -42,10 +42,10 @@ effectively maintain a Swift cluster over time:
   have already been initialised.
 
 This forces operators to manually apply changes like adjusting the
-partition-power to accommodate for additional storage added to the cluster. This
-poses great risk since manually editing the rings/builders and syncing them
-across the cluster could easily conflict with the swift-proxy charm's native
-support for doing this resulting in a broken cluster.
+partition-power to accommodate for additional storage added to the cluster.
+This poses great risk since manually editing the rings/builders and syncing
+them across the cluster could easily conflict with the swift-proxy charm's
+native support for doing this resulting in a broken cluster.
 
 Proposed Change
 ===============
