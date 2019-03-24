@@ -128,7 +128,7 @@ A new git repository will be required for the Panko charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-panko
+    https://git.openstack.org/openstack/charm-panko
 
 Documentation
 -------------

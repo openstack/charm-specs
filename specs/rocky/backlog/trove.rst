@@ -90,7 +90,7 @@ A new git repository will be required for the Trove charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-trove
+    https://git.openstack.org/openstack/charm-trove
 
 Documentation
 -------------

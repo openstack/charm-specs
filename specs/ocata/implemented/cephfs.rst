@@ -84,7 +84,7 @@ A new git repository will be required to host the ceph-fs charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-ceph-fs
+    https://git.openstack.org/openstack/charm-ceph-fs
 
 Documentation
 -------------

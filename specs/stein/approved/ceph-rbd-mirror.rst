@@ -165,7 +165,7 @@ A new git repository will be required for the ``ceph-rbd-mirror`` charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-ceph-rbd-mirror
+    https://git.openstack.org/openstack/charm-ceph-rbd-mirror
 
 Documentation
 -------------

@@ -112,7 +112,7 @@ A new git repository will be required for the Barbican charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-barbican
+    https://git.openstack.org/openstack/charm-barbican
 
 Documentation
 -------------

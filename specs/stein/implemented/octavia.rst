@@ -120,7 +120,7 @@ A new git repository will be required for the ``octavia`` charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-octavia
+    https://git.openstack.org/openstack/charm-octavia
 
 Documentation
 -------------

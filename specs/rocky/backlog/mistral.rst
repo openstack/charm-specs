@@ -102,7 +102,7 @@ A new git repository will be required for the Mistral charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-mistral
+    https://git.openstack.org/openstack/charm-mistral
 
 Documentation
 -------------

@@ -90,7 +90,7 @@ A new git repository will be required for the Aodh charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-aodh
+    https://git.openstack.org/openstack/charm-aodh
 
 Documentation
 -------------

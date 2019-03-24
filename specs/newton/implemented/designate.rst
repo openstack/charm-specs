@@ -105,8 +105,8 @@ Designate Bind charms:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-designate
-    git://git.openstack.org/openstack/charm-designate-bind
+    https://git.openstack.org/openstack/charm-designate
+    https://git.openstack.org/openstack/charm-designate-bind
 
 Documentation
 -------------

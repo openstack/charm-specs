@@ -166,8 +166,8 @@ and the identity-credentials interface will both need updating.
 Repositories
 ------------
 
-git://git.openstack.org/openstack/charm-masakari
-git://git.openstack.org/openstack/charm-masakari-monitors
+https://git.openstack.org/openstack/charm-masakari
+https://git.openstack.org/openstack/charm-masakari-monitors
 
 Documentation
 -------------

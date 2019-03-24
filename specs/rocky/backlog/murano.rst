@@ -93,7 +93,7 @@ A new git repository will be required for the Murano charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-murano
+    https://git.openstack.org/openstack/charm-murano
 
 Documentation
 -------------

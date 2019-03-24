@@ -124,7 +124,7 @@ A new git repository will be required for the Gnocchi charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-gnocchi
+    https://git.openstack.org/openstack/charm-gnocchi
 
 Documentation
 -------------

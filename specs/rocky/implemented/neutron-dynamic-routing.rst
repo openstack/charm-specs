@@ -170,19 +170,19 @@ A new repository for the neutron-dynamic-routing charm is needed.
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-neutron-dynamic-routing
+    https://git.openstack.org/openstack/charm-neutron-dynamic-routing
 
 A new repository for the quagga charm is needed.
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack-charmers/charm-quagga
+    https://git.openstack.org/openstack-charmers/charm-quagga
 
 A new repository for the bgp interface is needed.
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack-charmers/interface-bgp
+    https://git.openstack.org/openstack-charmers/interface-bgp
 
 
 Documentation

@@ -180,7 +180,7 @@ A new git repository will be required for the designate interface:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-interface-designate
+    https://git.openstack.org/openstack/charm-interface-designate
 
 Documentation
 -------------

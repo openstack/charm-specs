@@ -238,7 +238,7 @@ A new git repository will be required for the Mistral charm:
 
 .. code-block:: bash
 
-    git://git.openstack.org/openstack/charm-openstack-loadbalancer
+    https://git.openstack.org/openstack/charm-openstack-loadbalancer
 
 Documentation
 -------------
