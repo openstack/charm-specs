@@ -43,8 +43,8 @@ Proposed Change
 ===============
 
 A solution using corosync and pacemaker on each hypervisor, along with
-masakari-hostmonitor has been validated. Unfortunately a cluster where each node
-runs the full cluster stack is only recommended up to around 16 nodes:
+masakari-hostmonitor has been validated. Unfortunately a cluster where each
+node runs the full cluster stack is only recommended up to around 16 nodes:
 
 http://clusterlabs.org/pacemaker/doc/en-US/Pacemaker/1.1/html-single/Pacemaker_Remote/#_overview
 
@@ -146,8 +146,8 @@ Work Items
 ----------
 
 * Masakari charm cleanup
-* Add domain id information to identity-credentials relation. The keystone charm
-and the identity-credentials interface will both need updating.
+* Add domain id information to identity-credentials relation. The keystone
+  charm and the identity-credentials interface will both need updating.
 * Masakari-monitors charm cleanup
 * Add pacemaker-remote charm
 * Add pacemaker-remote interface
