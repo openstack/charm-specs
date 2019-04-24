@@ -57,8 +57,7 @@ Documentation for charm-specs process:
 
    How to submit a spec <readme>
 
-For more details, look at spec template for the specific release, and see the
-wiki page on Blueprints: https://wiki.openstack.org/wiki/Blueprints
+For more details, look at spec template for the specific release.
 
 Indices and tables
 ==================
