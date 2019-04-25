@@ -32,6 +32,12 @@ propose to solve this problem?
 If this is one part of a larger effort make it clear where this piece ends. In
 other words, what's the scope of this effort?
 
+What versions of the operating system are affected or required?
+
+What versions of OpenStack are affected or required?
+
+What version of Juju is required?
+
 Alternatives
 ------------
 
@@ -77,12 +83,19 @@ Repositories
 
 Will any new git repositories need to be created?
 
+Identify all new charm repos, interface repos, layer repos, whether new or
+existing, which will be affected or involved directly in the work which is
+defined by this spec.
+
 Documentation
 -------------
 
 Will this require a documentation change?  If so, which documents?
 Will it impact developer workflow?  Will additional communication need
 to be made?
+
+Identify the surface area of doc updates explicitly, ie. charm-guide,
+deployment-guide, charm README, wiki page links.
 
 Security
 --------
@@ -97,6 +110,8 @@ What tests will be available or need to be constructed in order to
 validate this?  Unit/functional tests, development
 environments/servers, etc.
 
+Are there any special hardware requirements to test this?
+
 Dependencies
 ============
 
@@ -105,3 +120,6 @@ Dependencies
 
 - Does this feature require any new library or program dependencies
   not already in use?
+
+- What are the plans to package and distribute the payload and/or
+  dependencies?
