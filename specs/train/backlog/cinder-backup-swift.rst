@@ -68,7 +68,8 @@ a backend for volume backups.
 
   - backup_swift_ca_cert_file
 
-Implement a new interface cinder-backup in reactive framework for sending cinder-backup external backend configuration.
+Implement a new interface cinder-backup in reactive framework for sending
+cinder-backup external backend configuration.
 
 Alternatives
 ------------

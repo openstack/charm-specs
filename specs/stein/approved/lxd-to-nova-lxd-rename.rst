@@ -52,6 +52,10 @@ The charm name will be switched with the ``juju upgrade-charm lxd
 --switch=nova-lxd`` method of changing a charm and this will be tested
 during upgrades.
 
+Alternatives
+------------
+
+No alternatives suggested.
 
 Implementation
 ==============
