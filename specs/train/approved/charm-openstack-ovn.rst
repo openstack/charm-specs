@@ -63,7 +63,7 @@ Implementation
 
 The implementation consists of the following charms:
 
-- ovn
+- ovn-central
 
   - Principal charm that deploys ``ovn-northd``, the OVN central control
     daemon, and ``ovsdb-server``, the Open vSwitch Database (OVSDB).
@@ -90,7 +90,7 @@ The implementation consists of the following charms:
     supporting both charm static configuration or with help from ``vault`` and
     the ``tls-certificates`` interface.
 
-- ovn-controller
+- ovn-chassis
 
   - Subordinate charm that deploys the OVN local controller and Open vSwitch
     Database and Switch.
@@ -100,7 +100,7 @@ The implementation consists of the following charms:
     unit local Open vSwitch daemon via OpenFlow.
 
   - Each hypervisor, software gateway or other units in need of OVN networking
-    runs its own independent copy of ``ovn-controller``.
+    runs its own independent copy of the ``ovn-controller`` daemon.
 
   - Modules to integrate with specific software, such as OpenStack
     ``nova-compute`` and Kubernetes ``worker``, should all be added to this
@@ -110,11 +110,11 @@ The implementation consists of the following charms:
   - A LXD profile will be required for this charm to enable container
     placement of OVN/OVS components.
 
-- ovn-dedicated-controller
+- ovn-dedicated-chassis
 
   - Principal charm for deployments that require a dedicated software gateway.
 
-  - This charm will be built from the ``ovn-controller`` subordinate codebase.
+  - This charm will be built from the ``ovn-chassis`` subordinate codebase.
 
 - neutron-api-plugin-ovn
 
