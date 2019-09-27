@@ -35,13 +35,12 @@ application is Ganesha. In addition to charming Ganesha, additional work
 will need to be done to improve the testability and supportablity of the
 existing CephFS charm.
 
-To allow the new Ganesha charm to integrate with Manila, a new manila-ganesha
-subordinate will be needed. The manila-ganesha subordinate will relate to a
-new interface in the ganesha charm that provides SSH access for manila to setup
-CephFS shares. The new Ganesha charm will be responsible for creating a new
-shared network for tenant workloads to access the network shares over. This
-will be implemented as an action that can take optional parameters to configure
-the network.
+To allow the new Ganesha charm to integrate with Manila, a new
+remote-manila-plugin interface will be added to the existing Manila charm
+that will act exactly the same as the existing manila-plugin interface, but
+will not be container scoped. This remote-manila-plugin interface will be used
+to disable the manila-share service on the Manila charm. The new manila-ganesha
+charm will configure the manila-share service in addition to Ganesha.
 
 Access to the Ganesha network will include security groups restricting tenants
 on the provider network from being able to access anything over that network
@@ -49,7 +48,7 @@ excepting their own NFS share, and IP restrictions will be used on the NFS
 shares to restrict tenants from being able to access each others' shares.
 This provider network will be documented as requiring creation by the OpenStack
 administrator. The network will need to be created to match the space that the
-Ganesha charm provides it's NFS service over.
+Ganesha charm provides its NFS service over.
 
 Alternatives
 ------------
@@ -69,19 +68,46 @@ A bundle overlay to add Ceph backed storage to Manila with Ganesha would look
 like:
 
 .. code-block:: yaml
+
     applications:
-      ganesha:
-        charm: ganesha
-        num_units: 2
-      manila-ganesha: # This charm is a subordinate charm
+      manila-ganesha:
         charm: manila-ganesha
+        num_units: 2
     relations:
       - - ceph-mon
         - ganesha
-      - - ganesha
+      - - manila-ganesha:remote-manila-plugin
+        - manila:remote-manila-plugin
+
+A more complete bundle could look like:
+
+.. code-block:: yaml
+
+    applications:
+      ceph-mon:
+        charm: cs:~openstack-charmers-next/ceph-mon
+        num_units: 3
+      ceph-osd:
+        charm: cs:~openstack-charmers-next/ceph-osd
+        num_units: 3
+        storage:
+          osd-devices: '10g'
+      ceph-mds:
+        charm: cs:~openstack-charmers-next/ceph-mds
+        num_units: 2
+      manila-ganesha:
+        charm: manila-ganesha
+        num_units: 2
+      manila:
+        charm: cs:~openstack-charmers-next/manila
+        num_units: 1
+    relations:
+      - - ceph-mon
         - manila-ganesha
-      - - manila-ganesha
-        - manila
+      - - ceph-mon
+        - ceph-osd
+      - - manila-ganesha:remote-manila-plugin
+        - manila:remote-manila-plugin
 
 Assignee(s)
 
@@ -100,8 +126,8 @@ Use Gerrit topic "charm-cephfs-manila" for all patches related to this spec.
 Work Items
 ----------
 
-- New Ganesha charm
-- New manila-nfs subordinate charm
+- New Manila-Ganesha charm
+- Updates to the Manila charm
 - Improvements to CephFS charm
 
 Repositories
@@ -109,11 +135,9 @@ Repositories
 
 There will be a few new repositories needed:
 
-- charm-ganesha
 - charm-manila-ganesha
-- charm-interface-manila-ganesha
 
-In addition, the existing charm-ceph-fs charm will be updated.
+In addition, charm-manila and charm-ceph-fs charm will be updated.
 
 Documentation
 -------------
