@@ -187,14 +187,13 @@ This work will affect a number of charms.  `Bug#1741723`_ records the charms
 that (most likely) need the policy override facility.  The principal ones that
 are the scope of this work are:
 
-- keystone
-- neutron-gateway
-- neutron-api
-- nova-compute
-- nova-cloud-controller
-- glance
 - cinder
 - designate (reactive charm)
+- glance
+- keystone
+- neutron-api
+- nova-cloud-controller
+- openstack-dashboard (horizon)
 
 The nature of the implementation should make it relatively easy to implement
 this on further charms.  Designate is included to provide a proof-of-concept
@@ -270,8 +269,18 @@ The following repositories will be affected:
 
 - `charm-helpers <https://github.com/juju/charm-helpers>`_
 - `charms.openstack <https://opendev.org/openstack/charms.openstack>`_
-- `keystone charm <https://opendev.org/openstack/charm-keystone>`_
+- `cinder charm <https://opendev.org/openstack/charm-cinder>`_
 - `designate charm <https://opendev.org/openstack/charm-designate>`_
+- `glance charm <https://opendev.org/openstack/charm-glance>`_
+- `keystone charm <https://opendev.org/openstack/charm-keystone>`_
+- `neutron-api charm <https://opendev.org/openstack/charm-neutron-api>`_
+- `nova-cloud-controller charm <https://opendev.org/openstack/charm-nova-cloud-controller>`_
+- `openstack-dashboard (horizon) charm <https://opendev.org/openstack/charm-openstack-dashboard>`_
+
+And the testing frameworks:
+
+- `zaza <https://github.com/openstack-charmers/zaza>`_
+- `zaza-openstack-tests <in://github.com/openstack-charmers/zaza-openstack-tests>`_
 
 Documentation
 -------------
@@ -298,9 +307,11 @@ Testing
 -------
 
 - Unit tests will be added to charm-helpers and charms.openstack
-- Functional tests will be added to the charm (using helpers from
-  charm-helpers) to verify that the overrides are put into the appropriate
-  directory and that the service is restarted.
+- Functional tests will be added to those charms that support the zaza testing
+  framework.  This will verify that the overrides are put into the appropriate
+  directory and that the service is restarted.  A service action (e.g. list
+  users) will be verified as working, then disabled, and then working again.
+  A framework will be put into zaza-openstack-tests to support this.
 
 Actual policy overrides are not checked.  This is the domain of the payload
 (service) and outside of the scope of testing for this feature which is simply
