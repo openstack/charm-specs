@@ -193,7 +193,6 @@ are the scope of this work are:
 - keystone
 - neutron-api
 - nova-cloud-controller
-- openstack-dashboard (horizon)
 
 The nature of the implementation should make it relatively easy to implement
 this on further charms.  Designate is included to provide a proof-of-concept
@@ -275,7 +274,6 @@ The following repositories will be affected:
 - `keystone charm <https://opendev.org/openstack/charm-keystone>`_
 - `neutron-api charm <https://opendev.org/openstack/charm-neutron-api>`_
 - `nova-cloud-controller charm <https://opendev.org/openstack/charm-nova-cloud-controller>`_
-- `openstack-dashboard (horizon) charm <https://opendev.org/openstack/charm-openstack-dashboard>`_
 
 And the testing frameworks:
 
