@@ -115,7 +115,7 @@ These charms will support TLS for API communications
 Alternatives
 ------------
 
-Although not as feature rich as maskari much of the functionality can be
+Although not as feature rich as masakari much of the functionality can be
 achieved using pacemaker/corosync resource configuration.
 
 Implementation
