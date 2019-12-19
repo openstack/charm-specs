@@ -184,7 +184,7 @@ be registered in Keystone:
 * juju network space binding via extra-bindings
 * prefer ipv6 via configuration option
 * presence of {public,internal,admin}-backend relations to
-  opentack loadbalancers
+  openstack loadbalancers
 
 OpenStack Loadbalancer charm
 ----------------------------
