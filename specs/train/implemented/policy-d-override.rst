@@ -122,8 +122,8 @@ The charm will attempt some validation of the attached resource file:
 
 - That the file is a valid zip file (note that any directories are ignored.
   The zip file is flattened to remove directories.
-- Files that don't have a ``.yaml`` or ``.yml`` extension are ignored.  This allows
-  documentation to be added to the zip file.
+- Files that don't have a ``.yaml`` or ``.yml`` extension are ignored.  This
+  allows documentation to be added to the zip file.
 - The remaining, flattened, identified yaml files are checked to have unique
   names.  If not, then the validation fails.
 - Each file is (attempted to be) loaded using the Python yaml ``safe_load``
@@ -150,9 +150,10 @@ restarted.
 OpenStack Service Support
 -------------------------
 
-The policy override feature appeared in ``oslo.policy`` for the ocata release, and was picked up by
-keystone and nova initially.  In order for it to be supported, the OpenStack service needs to support
-the ``Enforcer`` class to be able to make use of the ``policy.d`` override directory (which is the
+The policy override feature appeared in ``oslo.policy`` for the ocata release,
+and was picked up by keystone and nova initially.  In order for it to be
+supported, the OpenStack service needs to support the ``Enforcer`` class to be
+able to make use of the ``policy.d`` override directory (which is the
 default).
 
 The following service projects (that have Canonical charms) examined and have
@@ -173,7 +174,8 @@ the ``Enforcer`` class at the queens release:
 - trove
 - zaqar
 
-The following service projects do not have ``Enforcer`` class support at present (stein):
+The following service projects do not have ``Enforcer`` class support at
+present (stein):
 
 - swift
 
@@ -199,6 +201,11 @@ this on further charms.  Designate is included to provide a proof-of-concept
 for reactive charms.
 
 .. _`Bug#1741723`: https://bugs.launchpad.net/charm-keystone/+bug/1741723
+
+Alternatives
+------------
+
+N/A
 
 Implementation
 ==============
@@ -268,17 +275,17 @@ The following repositories will be affected:
 
 - `charm-helpers <https://github.com/juju/charm-helpers>`_
 - `charms.openstack <https://opendev.org/openstack/charms.openstack>`_
-- `cinder charm <https://opendev.org/openstack/charm-cinder>`_
-- `designate charm <https://opendev.org/openstack/charm-designate>`_
-- `glance charm <https://opendev.org/openstack/charm-glance>`_
-- `keystone charm <https://opendev.org/openstack/charm-keystone>`_
-- `neutron-api charm <https://opendev.org/openstack/charm-neutron-api>`_
-- `nova-cloud-controller charm <https://opendev.org/openstack/charm-nova-cloud-controller>`_
+- `cinder <https://opendev.org/openstack/charm-cinder>`_ charm
+- `designate <https://opendev.org/openstack/charm-designate>`_ charm
+- `glance <https://opendev.org/openstack/charm-glance>`_ charm
+- `keystone <https://opendev.org/openstack/charm-keystone>`_ charm
+- `neutron-api <https://opendev.org/openstack/charm-neutron-api>`_ charm
+- `nova-cloud-controller`_ charm
 
 And the testing frameworks:
 
 - `zaza <https://github.com/openstack-charmers/zaza>`_
-- `zaza-openstack-tests <in://github.com/openstack-charmers/zaza-openstack-tests>`_
+- `zaza-openstack-tests`_
 
 Documentation
 -------------
@@ -318,4 +325,9 @@ to drop appropriately formatted yaml files into the policy.d directory.
 Dependencies
 ============
 
-There are no dependencies.
+There are no dependencies
+
+.. LINKS
+
+.. _nova-cloud-controller: https://opendev.org/openstack/charm-nova-cloud-controller
+.. _zaza-openstack-tests: https:////github.com/openstack-charmers/zaza-openstack-tests

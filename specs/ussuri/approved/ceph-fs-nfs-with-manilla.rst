@@ -110,6 +110,7 @@ A more complete bundle could look like:
         - manila:remote-manila-plugin
 
 Assignee(s)
+-----------
 
 Primary assignee:
   Chris.MacNaughton
