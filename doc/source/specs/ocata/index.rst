@@ -16,19 +16,3 @@ Ocata implemented specs:
    :maxdepth: 1
 
    implemented/*
-
-Ocata approved (but not implemented) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   approved/*
-
-Ocata backlog (carried over from previous cycle) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   backlog/*

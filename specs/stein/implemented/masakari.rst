@@ -102,7 +102,7 @@ Additional work:
 * Fix masakari-hostmonitors to work with pacemaker remote
   As mentioned masakari-hostmonitors does not work wih pacemaker-remote at the
   moment. A patch will need to be written to fix this and ideally landed
-   upstream.
+  upstream.
 
 * Write maas stonith driver.
   It is important that instances that are using shared storage are only running

@@ -9,9 +9,9 @@ Template:
 
    Specification Template (Ussuri release) <template>
 
-Ussuri implemented specs:
+.. Ussuri implemented specs:
 
-.. toctree::
+.. .. toctree::
    :glob:
    :maxdepth: 1
 

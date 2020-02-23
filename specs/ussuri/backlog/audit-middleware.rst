@@ -42,7 +42,8 @@ Do it manually.
 Implementation
 ==============
 
-For each of the OpenStack charms that provides API, we need to do the following:
+For each of the OpenStack charms that provides API, we need to do the
+following:
 
 * Add a configuration option to enable or disable audit middleware.
 * We need to add the specific sections that need to go into 3 files.

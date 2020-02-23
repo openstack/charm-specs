@@ -85,7 +85,7 @@ The proposed change can be split to the following items:
 - "write-affinity-node-count":
 
   purpose: specifies how many local objects will be tried before falling back
-           to non-local ones
+  to non-local ones
   data type: string
   valid values: matches "^\d+(\s\*\sreplicas)?$" pattern
 

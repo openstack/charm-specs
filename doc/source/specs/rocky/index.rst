@@ -2,13 +2,6 @@
 Charm Rocky Specifications
 ===========================
 
-Template:
-
-.. toctree::
-   :maxdepth: 1
-
-   Specification Template (Rocky release) <template>
-
 Rocky implemented specs:
 
 .. toctree::

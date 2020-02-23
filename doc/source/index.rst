@@ -1,27 +1,6 @@
-.. charm-specs documentation master file
-
 =============================
 OpenStack Charm Project Plans
 =============================
-
-Priorities
-==========
-
-During each design summit, we agree what the whole community wants to focus
-on for the upcoming release. This is the output of those discussions:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   priorities/ussuri-priorities
-   priorities/train-priorities
-   priorities/stein-priorities
-   priorities/rocky-priorities
-   priorities/queens-priorities
-   priorities/pike-priorities
-   priorities/ocata-priorities
-   priorities/newton-priorities
 
 Specifications
 ==============
@@ -40,14 +19,6 @@ Here you can find the specs, and spec template, for each release:
    specs/pike/index
    specs/ocata/index
    specs/newton/index
-
-There are also some approved backlog specifications that are looking for owners:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   specs/backlog/index
 
 Process
 =======

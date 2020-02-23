@@ -86,7 +86,7 @@ does *not* do and lies outside of the scope of this spec.
 * It does not automatically advertise all OpenStack networks or whole subnet
   pools. A considerable amount of administrator configuration is still
   required, including associating OpenStack networks with the bgp-speaker. See
-  the `Testing documentation https://docs.openstack.org/neutron-dynamic-routing/latest/contributor/testing.html>`__
+  the `Testing documentation <https://docs.openstack.org/neutron-dynamic-routing/latest/contributor/testing.html>`__
   for a sense of the administrative overhead required.
 * It does not provide a mechanism for injecting arbitrary BGP routes (for
   example for /32 FIPs). It merely advertises OpenStack networks that have been

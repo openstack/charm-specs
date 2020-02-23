@@ -25,8 +25,8 @@ From `Fernet - Frequently Asked Questions
 
 A fernet token is a bearer token that represents user authentication.  Fernet
 tokens contain a limited amount of identity and authorization data in a
-`MessagePacked`__ payload.  The payload is then wrapped as a Fernet message for
-transport, where `Fernet`__ provides the required web safe characteristics for
+`MessagePacked`_ payload.  The payload is then wrapped as a Fernet message for
+transport, where `Fernet`_ provides the required web safe characteristics for
 use in URLs and headers.  The data inside the fernet token is protected using
 symmetric encryption keys, or fernet keys.
 
