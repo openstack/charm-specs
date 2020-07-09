@@ -9,26 +9,10 @@ Template:
 
    Specification Template (Ussuri release) <template>
 
-.. Ussuri implemented specs:
+Ussuri implemented specs:
 
-.. .. toctree::
+.. toctree::
    :glob:
    :maxdepth: 1
 
    implemented/*
-
-Ussuri approved (but not implemented) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   approved/*
-
-Ussuri backlog (carried over from previous cycle) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   backlog/*

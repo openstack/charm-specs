@@ -28,11 +28,13 @@ Proposed Change
 
 The proposed solution is to make the choice of storage backend a
 configuration option. The relation between gnocchi and ceph-mon would become
-an optional one, that would be activated only when Ceph is the selected backend.
+an optional one, that would be activated only when Ceph is the selected
+backend.
+
 The upstream documentation of Gnocchi mentions that S3 storage backends are
 supported, along with others, such as Swift, Redis and Ceph
-(https://gnocchi.xyz/install.html). The new feature would be supported on OpenStack
-Stein (and later) on Ubuntu 18.04 LTS.
+(https://gnocchi.xyz/install.html). The new feature would be supported on
+OpenStack Stein (and later) on Ubuntu 18.04 LTS.
 
 
 Alternatives
@@ -69,20 +71,23 @@ Work Items
   * S3 access key id
   * S3 secret access key
   * Prefix to namespace metric bucket: s3_bucket_prefix = gnocchi
-  * Maximum time to wait checking data consistency when writing to S3: s3_check_consistency_timeout = 60
-  * The maximum number of connections to keep in a connection pool: s3_max_pool_connections = 50
+  * Maximum time to wait checking data consistency when writing toi
+    S3: s3_check_consistency_timeout = 60
+  * The maximum number of connections to keep in a connection pool:
+    s3_max_pool_connections = 50
 
-* Make the Ceph relation and configuration optional, dependent on the charm option
+* Make the Ceph relation and configuration optional, dependent on the
+  charm option
 
 * Implement https endpoint for S3
 
 Timeline
 -----------
 
-The goal is to implement this change in the OpenstStack Charms 20.08 release. The freeze date for
-this release is July 24th 2020, for a release on August 5th (see release
-schedule). This change should be proposed for merging at least two weeks
-ahead of freeze, so ideally submitted by July 10th 2020.
+The goal is to implement this change in the OpenstStack Charms 20.08 release.
+The freeze date for this release is July 24th 2020, for a release on Augusti
+5th (see release schedule). This change should be proposed for merging ati
+least two weeks ahead of freeze, so ideally submitted by July 10th 2020.
 
 Repositories
 ------------
@@ -111,9 +116,9 @@ Testing
 
 Code changes will be covered by unit tests.
 Functional tests would require S3 storage hardware or software emulation.
-This is possible through a Swift deployment, or with RADOS Gateway. The deployment
-of the storage backend with S3 capability would be independent from the
-OpenStack bundle, to represent a real scenario.
+This is possible through a Swift deployment, or with RADOS Gateway. The
+deployment of the storage backend with S3 capability would be independent
+from the OpenStack bundle, to represent a real scenario.
 
 
 Dependencies
