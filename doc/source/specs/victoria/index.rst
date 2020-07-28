@@ -19,7 +19,7 @@ Victoria implemented specs:
 
 Victoria approved (but not implemented) specs:
 
-.. .. toctree::
+.. toctree::
    :glob:
    :maxdepth: 1
 
