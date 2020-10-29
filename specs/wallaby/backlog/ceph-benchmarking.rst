@@ -33,9 +33,9 @@ Problem Description
 
 It is often unclear what performance one should expect from a software stack
 like Ceph. For example, it is difficult to give performance expectations in
-absolute terms (e.g. IOPS, throuput, etc), because performance is hardware and technology
-dependent. It may also be difficult to determine which suite of features to use
-and what their relative cost / benefit quotient might be.
+absolute terms (e.g. IOPS, throuput, etc), because performance is hardware and
+technology dependent. It may also be difficult to determine which suite of
+features to use and what their relative cost / benefit quotient might be.
 
 The proposed changes will allow for acquiring relative performance (IOPs) on a
 given set of hardware that can be compared with various features turned on or

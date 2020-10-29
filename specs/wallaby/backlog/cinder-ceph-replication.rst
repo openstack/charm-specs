@@ -102,6 +102,25 @@ None
 Implementation
 ==============
 
+Assignee(s)
+-----------
+
+1. ionutbalutoiu (primary)
+2. oprinmarius
+
+Gerrit Topic
+------------
+
+Use Gerrit topic "cinder-ceph-replication" for all patches related to this
+spec.
+
+.. code-block:: bash
+
+    git-review -t cinder-ceph-replication
+
+Work Items
+----------
+
 - cinder-ceph
 
   - Provides a new config option ``rbd-mirror-mode`` (with the ``pool`` as the
@@ -142,22 +161,6 @@ Implementation
 
     This is going to be useful for charms that implement the ``ceph-client``
     interface, but the relation name is not ``ceph``.
-
-Assignee(s)
------------
-
-1. ionutbalutoiu (primary)
-2. oprinmarius
-
-Gerrit Topic
-------------
-
-Use Gerrit topic "cinder-ceph-replication" for all patches related to this
-spec.
-
-.. code-block:: bash
-
-    git-review -t cinder-ceph-replication
 
 Repositories
 ------------
