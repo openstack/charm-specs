@@ -94,6 +94,22 @@ Ceph cluster through a new relation with the ``ceph-mon`` charm. The new
 relation will implement the existing ``ceph-client`` interface, and it will
 be named ``ceph-replication-device``.
 
+Also, ``nova-compute`` needs to be able to connect to the Ceph cluster where
+the Cinder volumes are mirrored (otherwise, the VMs won't be able to access
+Cinder volumes after a failover).
+
+At the moment, the interface ``cinder-ceph-key`` is used by ``cinder-ceph`` to
+grant access to ``nova-compute`` for the main Ceph backend. We need to grant
+access to ``nova-compute`` for the secondary backend (with the replicated
+devices).
+
+Thus, we extend the ``ceph-access`` relation (that implements the
+``cinder-ceph-key`` interface), and we set a new relation variable called
+``keyrings``. This is a list of Ceph keys corresponding to the Cinder main
+and replication backends. This new relation variable is only set when Cinder
+replication is enabled, otherwise fallback to setting the previous relation
+data.
+
 Alternatives
 ------------
 
@@ -135,6 +151,19 @@ Work Items
     ``cinder.conf`` as ``replication_device`` config option, under the backend
     with replication enabled.
 
+  - Extend the ``ceph-access`` relation. If replication is enabled, make sure
+    to set the list of Ceph keys (``keyrings``) for both Cinder main and
+    replication backends.
+
+- nova-compute
+
+  - Handles the extended ``ceph-access`` relation. If more than a single Ceph
+    key is set as part of the relation data, make sure that both of them are
+    configured.
+
+    Makes sure that the previous relation data is handled as well (to maintain
+    backwards compatibility).
+
 - ceph-mon
 
   - Forwards the broker requests to the ``ceph-rbd-mirror`` with information
@@ -166,6 +195,8 @@ Repositories
 ------------
 
 - openstack/charm-cinder-ceph
+
+- openstack/charm-nova-compute
 
 - openstack/charm-ceph-mon
 
