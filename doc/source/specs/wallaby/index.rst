@@ -22,6 +22,7 @@ Wallaby approved (but not implemented) specs:
    :glob:
    :maxdepth: 1
 
+   approved/*
 
 Wallaby backlog (carried over from previous cycle) specs:
 
