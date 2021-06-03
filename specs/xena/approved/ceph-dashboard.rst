@@ -40,24 +40,60 @@ The upstream documentation of Ceph mentions Dashboard is supported,
 (https://docs.ceph.com/en/latest/mgr/dashboard/). The new feature would be
 supported on Ceph Octopus, OpenStack Victoria (and later) on Ubuntu 20.04 LTS.
 
-
-Out of Scope
-------------
-
-The following items should be covered in any future work:
- - integration with current LMA stack solution
- - SAML integration
- - RadosGW integration
- - Auditing
- - iSCSI Management
- - verify compatibility with previous releases, OpenStack Mimic+ (Stein)
- - VIP and hacluster relation
+The subordinate charm will enable access to the dashboard via the hostnames of
+the mon units. However, the hostname may not map to the desired network space,
+the operator may not be able to resolve the juju unit hostnames and the failure
+of a single mon unit may make the dashboard inaccessable if the operator was
+accessing the dashboard via that mon. To resolve these issues
+the dashboard charm will support a relation to an OpenStack loadbalancer
+application (as yet unwritten) which will manage an haproxy instance and a
+vip via the hacluster subordinate. If this relation is present the dashboard
+standby units will be configured to return a 500 enabling haproxy to determine
+the active dashboard unit. Both the loadbalancer and the dashboard charm
+will support SSL endpoint termination via a relation to vault or via
+configuration options. The delivery of the dashboard subordinate should be the
+initial focus of this work with the loadbalacer following soon after.
 
 Alternatives
 ------------
 
 Grafana offers some visualization possibilities, but it is limited to view
 only experience.
+
+Out of Scope
+------------
+
+.. list-table:: Features
+   :widths: 25 25
+   :header-rows: 1
+
+   * - Feature
+     - In Scope
+   * - Multi-User and Role Management
+     - ✓
+   * - Single Sign-On (SSO)
+     - X
+   * - SSL/TLS support
+     - ✓
+   * - Auditing
+     - ✓
+   * - Embedded Grafana Dashboards
+     - ✓
+   * - Monitoring (Prometheus & Alertmanager)
+     - X
+   * - iSCSI
+     - X
+   * - RBD
+     - ✓
+   * - RBD mirroring
+     - X
+   * - CephFS
+     - X
+   * - Object Gateway
+     - ✓
+   * - NFS
+     - X
+
 
 Implementation
 ==============
@@ -66,7 +102,7 @@ Assignee(s)
 -----------
 
 Primary assignee:
-  Gabor Meszaros <gabor.meszaros@canonical.com>
+  Liam Young <liam.young@canonical.com>
 
 Gerrit Topic
 ------------
@@ -80,7 +116,7 @@ Use Gerrit topic "ceph-dashboard" for all patches related to this spec.
 Work Items
 ----------
 
-* Implement a new reactive subordinate charm, ceph-dashboard
+* Implement a new operator framework subordinate charm, ceph-dashboard
 
 * Add a charm option for toggling ceph mgr dashboard
 
@@ -96,21 +132,28 @@ Work Items
   test should include deploying ceph-mon with ceph-dashboard added, without
   user management actions)
 
+* Create generic service loadbalancer charm.
+
+* Add a relation to a loadbalancer service which will provide a HA vip
+  for accessing the dashboard.
+
 
 Timeline
 --------
 
-The goal is to implement this change in the OpenStack Charms 21.04 release.
-The freeze date for this release is 15th Mar 2021, for a release on 9th
-Apr (see release schedule). This change should be proposed for merging at
-least two weeks ahead of freeze, so ideally submitted by 26th Feb 2021.
+The goal is to implement this change in the OpenStack Charms 21.10 release.
 
 Repositories
 ------------
 
-Changes will be pushed to a new ceph-dashboard charm repository:
+During initial development the code will be managed here:
 
-https://git.openstack.org/openstack/charm-ceph-dashboard
+https://github.com/openstack-charmers/charm-ceph-dashboard
+
+When ready the charm will be managed via OpenDev gerrit.
+
+https://opendev.org/openstack/charm-ceph-dashboard
+
 
 
 Documentation
