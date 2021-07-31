@@ -42,7 +42,7 @@ supported on Ceph Octopus, OpenStack Victoria (and later) on Ubuntu 20.04 LTS.
 
 
 Out of Scope
-============
+------------
 
 The following items should be covered in any future work:
  - integration with current LMA stack solution
@@ -118,7 +118,7 @@ Documentation
 
 The charm should contain documented options:
 
-* Create charm options 
+* Create charm options
 
 * Create charm actions
 

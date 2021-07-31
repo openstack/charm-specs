@@ -40,27 +40,27 @@ continuous 512 (2^9) 4K pages according to /proc/pagetypeinfo.
 
 2). Synchronous reclaim.
 There are three levels of watermark inside the system: 1). min 2). low 3).
-high. When the number of free pages lowers down to the low watermark. The kswapd
-will be wakened up to do the asynchronous reclaim. Furthermore, it will not be
-stopped until the number of free pages reaches the high watermark. However, when
-the memory allocation is strong enough, the free pages will continue to lower
-down to the min watermark. At this point, the number of min pages is reserved
-for emergency usage, and the allocation will go into the
+high. When the number of free pages lowers down to the low watermark. The
+kswapd will be wakened up to do the asynchronous reclaim. Furthermore, it
+will not be stopped until the number of free pages reaches the high watermark.
+However, when the memory allocation is strong enough, the free pages will
+continue to lower down to the min watermark. At this point, the number of min
+pages is reserved for emergency usage, and the allocation will go into the
 direct-reclaim (synchronous) mode. This will stall the process.
 
 Proposed Change
 ===============
 
-In the past experience, the 1GB gap between min<->low<->high watermark is a good
-practice in the server environment. The bigger gap can wake up the kswapd
+In the past experience, the 1GB gap between min<->low<->high watermark is a
+good practice in the server environment. The bigger gap can wake up the kswapd
 earlier and avoid the synchronous reclaim. Moreover, this can alleviate the
 latency. The sysctl parameters related to the watermark gap calculation:
 
 vm.min_free_kbytes
 vm.watermark_scale_factor
 
-For the Ubuntu kernel before 4.15 (Bionic), the only way to tune the watermark is
-to modify the vm.min_free_kbytes. The gap would be 1/4 of the
+For the Ubuntu kernel before 4.15 (Bionic), the only way to tune the watermark
+is to modify the vm.min_free_kbytes. The gap would be 1/4 of the
 vm.min_free_kbytes. However, increasing the min_free_kbytes is the minimum
 watermark reservation increase, which will decrease the actual memory that the
 runtime system can use.
@@ -77,7 +77,8 @@ The feature will be designed in flexible ways:
 off. For some small memory compute nodes (<32GB), the 1GB low memory is too
 many.
 
-2). The manual config has a higher priority to overwrite the default calculation.
+2). The manual config has a higher priority to overwrite the default
+calculation.
 
 Alternatives
 ------------
@@ -104,7 +105,8 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "memory-fragmentation-tuning" for all patches related to this spec.
+Use Gerrit topic "memory-fragmentation-tuning" for all patches related to
+this spec.
 
 .. code-block:: bash
 
@@ -113,7 +115,8 @@ Use Gerrit topic "memory-fragmentation-tuning" for all patches related to this s
 Work Items
 ----------
 
-Implement the watermark_scale_factor value calculation to set up the gap to 1GB.
+Implement the watermark_scale_factor value calculation to set up the gap to
+1GB.
 
 Repositories
 ------------

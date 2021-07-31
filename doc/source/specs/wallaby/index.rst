@@ -15,19 +15,4 @@ Wallaby implemented specs:
    :glob:
    :maxdepth: 1
 
-
-Wallaby approved (but not implemented) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   approved/*
-
-Wallaby backlog (carried over from previous cycle) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   backlog/*
+   implemented/*
