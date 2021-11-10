@@ -11,6 +11,7 @@ Here you can find the specs, and spec template, for each release:
    :glob:
    :maxdepth: 1
 
+   specs/yoga/index
    specs/xena/index
    specs/wallaby/index
    specs/victoria/index

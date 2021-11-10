@@ -15,19 +15,5 @@ Xena implemented specs:
    :glob:
    :maxdepth: 1
 
+   implemented/*
 
-Xena approved (but not implemented) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   approved/*
-
-Xena backlog (carried over from previous cycle) specs:
-
-.. toctree::
-   :glob:
-   :maxdepth: 1
-
-   backlog/*

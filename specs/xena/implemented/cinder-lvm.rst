@@ -9,7 +9,7 @@
 Cinder subordinate charm cinder-lvm
 ===================================
 
-Problem description
+Problem Description
 ===================
 
 Cinder has a great number of drivers for different backends. Almost all
@@ -53,10 +53,10 @@ Assignee(s)
 -----------
 
 Primary assignee:
-    Andre Ruiz <andre.ruiz@canonical.com> - Launchpad ID: andre-ruiz
+    Andre Ruiz <andre.ruiz@canonical.com> - LP ID: andre-ruiz
 
 Secondary assignee:
-    Luciano Lo Giudice <luciano.logiudice@canonical.com> - Launchpad ID: lmlogiudice
+    Luciano Lo Giudice <luciano.logiudice@canonical.com> - LP ID: lmlogiudice
 
 Gerrit Topic
 ------------

@@ -12,9 +12,9 @@
   http://sphinx-doc.org/rest.html To test out your formatting, see
   http://www.tele3.cz/jbar/rest/rest.html
 
-================================================================================
-Sharing SSH authentication credentials across cloud-compute-related applications
-================================================================================
+======================================================================
+Sharing SSH auth credentials across cloud-compute-related applications
+======================================================================
 
 Some cloud environments require different configuration settings
 (e.g. allocation ratios) for different hosts, yet still need to allow
@@ -108,7 +108,8 @@ Primary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "migration-ssh-auth-sharing" for all patches related to this spec.
+Use Gerrit topic "migration-ssh-auth-sharing" for all patches related to this
+spec.
 
 .. code-block:: bash
 
