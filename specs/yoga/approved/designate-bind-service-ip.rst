@@ -152,9 +152,6 @@ Basic checks should be performed on the supplied IP addresses:
 * Validate that the supplied values are valid IPs
 * Validate that the Service IP belongs to the subnet configured on the unit.
 
-References
-==========
-
 [1] `<https://jaas.ai/designate-bind/36>`_
 
 [2] `<https://jaas.ai/hacluster>`_
