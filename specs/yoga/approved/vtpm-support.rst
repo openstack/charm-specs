@@ -43,8 +43,9 @@ and is out of scope for this implementation.
 
 The above also makes it generally safe to enable by default for users who
 upgrade their charms to a version that has this capability enabled. While it
-may be safe to enable by default, a configuration option will be provided to
-disable it.
+may be safe to enable by default, initial versions will ship with the feature
+disabled by default in order to prevent package installation errors on charm
+or OpenStack upgrade.
 
 Charm Configuration Options
 ---------------------------
@@ -57,7 +58,7 @@ charm:
 
       enable-vtpm:
         type: boolean
-        default: True
+        default: False
         description: |
           Enable emulated Trusted Platform Module support on the hypervisors.
           A key manager, e.g. Barbican, is a required service for this
@@ -165,8 +166,8 @@ This feature has no dependency on Juju versions.
 Alternatives
 ------------
 
-This is an optional section, where it does apply we'd just like a demonstration
-that some thought has been put into why the proposed approach is the best one.
+There are no alternatives for vTPM support within the charms that integrates
+nicely with OpenStack while using the OpenStack charms for deployment.
 
 Implementation
 ==============
