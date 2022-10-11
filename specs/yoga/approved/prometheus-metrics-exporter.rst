@@ -35,6 +35,20 @@ haproxy are not part of this scope.
 Proposed Change
 ===============
 
+Prometheus-scrape interface
+---------------------------
+This interface is reactivated form the
+`prometheus_scrape library <https://github.com/canonical/prometheus-k8s-operator/blob/main/lib/charms/prometheus_k8s/v0/prometheus_scrape.py>`_,
+which is used in the new `COS <https://charmhub.io/topics/canonical-observability-stack>`_.
+It is written for the Operator framework, so it will be necessary to wrap
+`MetricsEndpointConsumer(Object)` to `PrometheusScrapeRequires(Endpoint)` and
+`MetricsEndpointProvider(Object)` to `PrometheusScrapeProvides(Endpoint)`.
+
+The interface `charm-interface-prometheus-scrape <https://github.com/openstack-charmers/charm-interface-prometheus-scrape>`_
+already implements the `PrometheusScrapeProvides(Endpoint)` part and thus it
+can be used to relate reactive charms with `prometheus-k8s-operator <https://github.com/canonical/prometheus-k8s-operator>`_
+charm.
+
 Bind
 ----
 
@@ -62,7 +76,8 @@ The `stats.conf` will have the following content:
 
 Where stats-listen-net, stats-port and client-ip default values are 127.0.0.1,
 8053 and 127.0.0.1, respectively. This will open a statistics channel in bind
-that prometheus-scrape-interface can expose metrics for prometheus to collect.
+that `prometheus_scrape interface` can expose metrics for prometheus to
+collect.
 
 This new configuration file will be included at `/etc/bind/named.conf`
 appending the following content:
@@ -83,27 +98,26 @@ files and removing it from the restart_map.
 
 **Relations:**
 
-The charm-designate-bind will support the `prometheus-scrape interface`
+The charm-designate-bind will support the `prometheus_scrape interface`
 to relate directly with prometheus charm and will have all the logic necessary
-to install the `snap <https://launchpad.net/prometheus-bind-exporter-snap>`_ responsible
-for the prometheus bind exporter. The charm will interact with the snap by
-setting listen-address and stats-groups.
+to install the `snap <https://launchpad.net/prometheus-bind-exporter-snap>`_
+responsible for the prometheus bind exporter. The charm will interact with the
+snap by setting listen-address and stats-groups.
 
 Furthermore, charm-designate-bind would also relate to the Grafana charm
 to share a rendered template with an optimized Grafana dashboard.
 
 Provides:
 
+* **bind-exporter:prometheus_scrape** - The relation connecting this charm with
+  the prometheus charm, while providing hostname and port through which it will
+  collect all the metrics in Prometheus.
 * **grafana:grafana-dashboard** - The relation connecting this charm with the
-  Grafana charm and at the same time responsible for creating a new dashboard.
-* **bind-exporter:prometheus-scrape-interface** - The relation connecting this
-  charm with the prometheus charm, while providing hostname and port through
-  which it will collect all the metrics in Prometheus.
+  Grafana charm and at the same time responsible for creating a new dashboard
+  from charm resource.
 
-**Note**: In order to provide prometheus-scrape-interface, a new interface will
-be created and the repo and docs links added in
-`layer-index <https://github.com/juju/layer-index>`_ . This new interface
-will need an update on prometheus charm to support it.
+**Note**: The `render_grafana_dashboard <https://github.com/juju/charm-helpers/blob/bf9c2d83ed579ffb369abbb687fbdf2de62b4d54/charmhelpers/contrib/openstack/ha/utils.py#L353>`_
+function from charmhelpers will be responsible for rendering the dashboard.
 
 
 **Actions**:
@@ -142,7 +156,7 @@ For the legacy charms the implementation should be split into five parts:
   section below)
 * adding configuration options - by charm itself
 * adding and managing relations changes - by charm itself
-* providing Grafana dashboard template (JSON) - by charm itself
+* providing Grafana dashboard template (JSON) - by charm itself via resource
 
 Charmhelpers
 ^^^^^^^^^^^^
@@ -196,8 +210,6 @@ be considered exhaustive at the time of writing.
 * charm-vault
 * charm-ironic-api
 
-The charm-keystone has been already implemented and there is a `proposal <https://review.opendev.org/c/openstack/charm-keystone/+/804760>`_.
-
 **Configuration options**
 
 No configurations will be available. The charm will configured
@@ -207,18 +219,15 @@ automatically the port to Prometheus exporter.
 
 Provides:
 
-* **haproxy-exporter:prometheus-scrape-interface** - The relation
-  connecting this charm with the Prometheus charm, while providing
-  hostname and port through which it will collect all the metrics
-  in Prometheus.
-* **grafana:grafana-dashboard** - The relation connecting this charm
-  with the Grafana charm and at the same time responsible for creating
-  a new dashboard.
+* **haproxy-exporter:prometheus_scrape** - The relation connecting this charm
+  with the Prometheus charm, while providing hostname and port through which it
+  will collect all the metrics in Prometheus.
+* **grafana:grafana-dashboard** - The relation connecting this charm with the
+  Grafana charm and at the same time responsible for creating a new dashboard
+  from charm resource.
 
-This relation will use the function `render_grafana_dashboard <https://github.com/juju/charm-helpers/blob/bf9c2d83ed579ffb369abbb687fbdf2de62b4d54/charmhelpers/contrib/openstack/ha/utils.py#L353>`_ from charmhelpers to
-obtain rendered dashboard as string and then it will update relation data with
-{"dashboard": rendered_dashboard_as_str}. The relation data should be updated
-only for the whole application, not per specific unit.
+**Note**: The `render_grafana_dashboard <https://github.com/juju/charm-helpers/blob/bf9c2d83ed579ffb369abbb687fbdf2de62b4d54/charmhelpers/contrib/openstack/ha/utils.py#L353>`_
+function from charmhelpers will be responsible for rendering the dashboard.
 
 **Actions**:
 
@@ -228,7 +237,7 @@ References
 ----------
 
 * https://snapcraft.io/docs/go-plugin
-* https://code.launchpad.net/~rgildein/prometheus-bind-exporter-snap/+git/prometheus-bind-exporter-snap/+merge/408138
+* https://www.haproxy.com/blog/haproxy-exposes-a-prometheus-metrics-endpoint/
 
 
 Alternatives
@@ -265,33 +274,33 @@ The Proposed Change and Repositories sections describe the working items.
 Repositories
 ------------
 
-* `interface-bind-client <https://github.com/canonical/interface-bind-client>`_
-* interface-prometheus-scrape
-* `prometheus-bind-exporter-operator <https://github.com/canonical/prometheus-bind-exporter-operator>`_
-* charm-designate-bind
-* charm-helpers
-* charm-hacluster
-* charm-ceilometer
-* charm-ceph-radosgw
-* charm-keystone
-* charm-neutron-api
-* charm-nova-cloud-controller
-* charm-openstack-dashboard
-* charm-cinder
-* charm-glance
-* charm-heat
-* charm-swift-proxy
-* charm-designate
-* charm-neutron-gateway
-* charm-percona-cluster
-* charm-vault
-* charm-ironic-api
+* `prometheus-haproxy-exporter <https://launchpad.net/prometheus-haproxy-exporter-snap>`_
+* `prometheus-bind-exporter <https://snapcraft.io/prometheus-bind-exporter>`_
+* `charm-interface-prometheus-scrape <https://github.com/openstack-charmers/charm-interface-prometheus-scrape>`_
+* `charm-designate-bind <https://opendev.org/openstack/charm-designate-bind>`_
+* `charm-helpers <https://github.com/juju/charm-helpers>`_
+* `charm-hacluster <https://opendev.org/openstack/charm-hacluster>`_
+* `charm-ceilometer <https://opendev.org/openstack/charm-ceilometer>`_
+* `charm-ceph-radosgw <https://opendev.org/openstack/charm-ceph-radosgw>`_
+* `charm-keystone <https://opendev.org/openstack/charm-keystone>`_
+* `charm-neutron-api <https://opendev.org/openstack/charm-neutron-api>`_
+* `charm-nova-cloud-controller <https://opendev.org/openstack/charm-nova-cloud-controller>`_
+* `charm-openstack-dashboard <https://opendev.org/openstack/charm-openstack-dashboard>`_
+* `charm-cinder <https://opendev.org/openstack/charm-cinder>`_
+* `charm-glance <https://opendev.org/openstack/charm-glance>`_
+* `charm-heat <https://opendev.org/openstack/charm-heat>`_
+* `charm-swift-proxy <https://opendev.org/openstack/charm-swift-proxy>`_
+* `charm-designate <https://opendev.org/openstack/charm-designate>`_
+* `charm-neutron-gateway <https://opendev.org/openstack/charm-neutron-gateway>`_
+* `charm-percona-cluster <https://opendev.org/openstack/charm-percona-cluster>`_
+* `charm-vault <https://opendev.org/openstack/charm-designate-vault>`_
+* `charm-ironic-api <https://opendev.org/openstack/charm-ironic-api>`_
 
 Documentation
 -------------
 
 Documentation on how to use prometheus-exporter for HAProxy and
-prometheus-bind-exporter-operator will be necessary.
+prometheus-bind-exporter for BIND will be necessary.
 
 Security
 --------
@@ -301,8 +310,8 @@ None
 Testing
 -------
 
-Code written or changed will be covered by unit tests; functional testing will
-be implemented using the ``Zaza`` framework.
+Code written or changed will be covered by unit tests and functional test.
+The functional test will be implemented using the ``Zaza`` framework.
 
 Dependencies
 ============
