@@ -1,5 +1,5 @@
 =============================
-Charm Yoga Specifications
+Charm Zed Specifications
 =============================
 
 Template:
@@ -7,9 +7,9 @@ Template:
 .. toctree::
    :maxdepth: 1
 
-   Specification Template (Yoga release) <template>
+   Specification Template (Zed release) <template>
 
-Yoga implemented specs:
+Zed implemented specs:
 
 .. toctree::
    :glob:

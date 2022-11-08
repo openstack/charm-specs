@@ -37,8 +37,8 @@ are of condiderable importance for the development of this subordinate charm:
 * The new charm should implement all features currently existing in the cinder
   charm, regarding the nimblestorage functionality.
 
-Note that because the Nimblestorage driver is part of the cinder-common package, no
-additional packages need to be installed for this charm to work.
+Note that because the Nimblestorage driver is part of the cinder-common
+package, no additional packages need to be installed for this charm to work.
 
 This charm would be supported in the Ussuri release of Openstack and newer.
 
@@ -62,7 +62,8 @@ Secondary assignee:
 Gerrit Topic
 ------------
 
-Use Gerrit topic "charm-cinder-nimblestorage" for all patches related to this spec.
+Use Gerrit topic "charm-cinder-nimblestorage" for all patches related to this
+spec.
 
 .. code-block:: bash
 
