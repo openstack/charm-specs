@@ -22,3 +22,11 @@ Template:
    :maxdepth: 1
 
    backlog/*
+
+2024.1 (Caracal) approved specs:
+
+.. toctree::
+   :glob:
+   :maxdepth: 1
+
+   approved/*

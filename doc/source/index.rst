@@ -16,7 +16,6 @@ Here you can find the specs, and spec template, for each release:
    specs/2023.1/index
    specs/zed/index
    specs/yoga/index
-   specs/yoga/implemented/*
    specs/xena/index
    specs/wallaby/index
    specs/victoria/index
