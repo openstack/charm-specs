@@ -9,17 +9,15 @@ Template:
 
    Specification Template (2023.2 release) <template>
 
-2023.2 (Bobcat) implemented specs:
+2023.1 (Antelope) implemented specs:
 
 .. toctree::
    :glob:
    :maxdepth: 1
 
 
-2023.2 (Bobcat) backlog (carried over from previous cycle) specs:
+2023.1 (Antelope) backlog (carried over from previous cycle) specs:
 
 .. toctree::
    :glob:
    :maxdepth: 1
-
-   backlog/*
